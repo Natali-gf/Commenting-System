@@ -1,0 +1,18 @@
+@import '_variables';
+@import '_general';
+@import '_stubBlocks';
+@import '_comments';
+@import '_commentsOptions';
+@import '_formBox';
+
+@font-face {
+    font-family: "Inter";
+    src: url(../assets/fonts/Inter-VariableFont.ttf);
+}
+
+.show{
+    display: flex;
+}
+.hidden {
+    display: none;
+}

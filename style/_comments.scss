@@ -1,0 +1,45 @@
+.comments{
+	width: 100%;
+	height: 55px;
+	&__header{
+		display: flex;
+		align-items: flex-end;
+		width: 100%;
+		height: 100%;
+		gap: 50px;
+		margin-bottom: 32px;
+	}
+	&__title{
+		border-bottom: 2px solid black;
+		display: flex;
+	}
+	&__amount{
+		font-size: 20px;
+		font-weight: 500;
+		line-height: 24.2px;
+		display: flex;
+		color: $colorGrey;
+		margin-left: 10px;
+	}
+	&__sort, &__favorite {
+		display: flex;
+		color: $colorGrey;
+		font-size: 16px;
+		line-height: 19px;
+	}
+	&__sort {
+		position: relative;
+		&::after{
+			margin: 2px 0 0 10px;
+			content: url(../assets/icons/arrow.svg);
+		}
+	}
+	&__favorite{
+		&::after {
+			margin-left: 10px;
+			width: 19px;
+			height: 19px;
+			content: url(../assets/icons/favorite.svg);
+		}
+	}
+}

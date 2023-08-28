@@ -42,6 +42,18 @@
 			margin-right: 8px;
 		}
 	}
+	@media (max-width: $sizeMobile) {
+		gap: 15px;
+		&__favorite {
+			font-size: 16px;
+		}
+		&__answer {
+			font-size: 16px;
+		}
+		&__rating {
+			margin-top: 5px;
+		}
+	}
 }
 
 .rating {
@@ -73,5 +85,10 @@
 		&::before {
 			content: url(../assets/icons/minus.svg);
 		}
+	}
+	@media (max-width: $sizeMobile) {
+		flex-direction: column;
+		align-items: center;
+		gap: 0;
 	}
 }

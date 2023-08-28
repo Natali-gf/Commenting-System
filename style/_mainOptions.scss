@@ -7,9 +7,20 @@
 	}
 	&__order {
 		background: transparent;
-		&::after{
-			margin: 2px 0 0 10px;
-			content: url(../assets/icons/arrow.svg);
+		&_1 {
+			&::after{
+				display: block;
+				margin: 2px 0 0 10px;
+				content: url(../assets/icons/arrow.svg);
+			}
+		}
+		&_0 {
+			&::after{
+				display: block;
+				margin: 2px 0 0 10px;
+				content: url(../assets/icons/arrow.svg);
+				transform: rotate(180deg);
+			}
 		}
 	}
 	&__list {
@@ -26,6 +37,7 @@
 		background-color: white;
 		border-radius: 5px;
 		box-sizing: border-box;
+		z-index: 1;
 	}
 	&__item {
 		font-size: 16px;

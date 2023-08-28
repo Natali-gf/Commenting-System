@@ -4,7 +4,7 @@ import Notification from "../others/Notification.js";
 import User from "../others/User.js";
 import { updateCommentsStorage } from "../helpers/storage.js";
 import { FavoriteComment } from "../enum/favorite.js";
-import CommentsHeader from "./CommentsHeader.js";
+import CommentsCounter from "../options/CommentsCounter.js";
 
 export default class FormBlock implements IBlock {
 	parentBlock: HTMLDivElement = document.createElement('div');
@@ -28,7 +28,6 @@ export default class FormBlock implements IBlock {
 	}
 
 	public rendering(comment?: Comment){
-		console.log(comment?.id, comment!= undefined)
 		this.parentBlock.className = this.blockClassName;
 		this.formBlock = document.querySelector('.form-block');
 
@@ -76,9 +75,6 @@ export default class FormBlock implements IBlock {
 			target.style.height = 'auto';
   			target.style.height = target.scrollHeight + 1 + "px";
 
-			console.log(this.isAnswer)
-console.log(JSON.parse(localStorage.getItem('allTheComments')))
-
 			this.notifications.changeDescription(target.value.length);
 
 			if(this.isButtonDisabled && target.value.length <= this.config.maxMessageLength){
@@ -99,6 +95,7 @@ console.log(JSON.parse(localStorage.getItem('allTheComments')))
 			id: crypto.randomUUID(),
 			parentId: this.isAnswer ? this.isAnswer : null,
 			answerIds: [],
+			lastAnswer: new Date(),
 			userPhoto: this.user.userPhoto,
 			userName: this.user.userName,
 			dataComment: new Date(),
@@ -111,13 +108,12 @@ console.log(JSON.parse(localStorage.getItem('allTheComments')))
 			textComment: e.target[0].value,
 		}
 
-		this.userComments.rendering(updateCommentsStorage(message));
-		// this.notifications.resetTextNotification();
-		// e.target[0].value = '';
 		this.isAnswer = null;
 		this.isButtonDisabled = true;
+
+		this.userComments.rendering(updateCommentsStorage(message));
 		this.rendering();
-		const comentsHeader = new CommentsHeader()
-		comentsHeader.rendering();
+		const comentsCounter = new CommentsCounter()
+		comentsCounter.rendering();
 	}
 }

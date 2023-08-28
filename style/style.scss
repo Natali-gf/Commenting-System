@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Inter";
+    src: url(../assets/fonts/Inter-VariableFont.ttf);
+}
+
 @import '_variables';
 @import '_general';
 @import '_stubBlocks';
@@ -5,11 +10,6 @@
 @import '_mainOptions';
 @import '_commentsOptions';
 @import '_formBox';
-
-@font-face {
-    font-family: "Inter";
-    src: url(../assets/fonts/Inter-VariableFont.ttf);
-}
 
 .show{
     display: flex;

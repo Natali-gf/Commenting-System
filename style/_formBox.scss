@@ -12,6 +12,8 @@
 		grid-area: name;
 		display: flex;
 		white-space: nowrap;
+		font-size: 18px;
+		font-weight: 500;
 	}
 	&__answer {
 		grid-area: answer;
@@ -21,12 +23,15 @@
 		padding: 2px 15px;
 		white-space: nowrap;
 		&_user-name {
-			&::after {
+			display: flex;
+			&::before {
 				content: '';
 				width: 15px;
 				height: 15px;
+				margin-top: 2px;
 				background-image: url(../assets/icons/answer.svg);
 				background-size: 15px;
+				transform: rotateY(180deg);
 			}
 		}
 		&_cancel {
@@ -68,6 +73,42 @@
 	&__form {
 		grid-area: form;
 	}
+	@media (max-width: $sizeIpad) {
+		display: grid;
+		grid-template-columns: 61px 30px 2fr 1fr;
+		grid-template-rows: 37px 40px 1fr 25px;
+		grid-template-areas:
+			"photo . name name"
+			"photo . answer notification"
+			"form form form form"
+			"error error error error";
+		&__user_name{
+			align-items: end;
+		}
+		&__answer {
+			padding: 0;
+			margin-top: 7px;
+			&_cancel {
+				cursor: pointer;
+				&::after {
+					padding: 5px 5px 5px 2px;
+				}
+			}
+		}
+		&__notification{
+			align-items: center;
+			text-align: end;
+			font-size: 10px;
+			padding: 0;
+		}
+		&__error-message{
+			display: flex;
+			justify-content: center;
+			align-items: end;
+			font-size: 12px;
+			line-height: 15px;
+		}
+	}
 }
 
 .form {
@@ -103,6 +144,25 @@
 			background-color: $colorGreySecondary;
 			color: $colorGrey;
 			cursor: not-allowed;
+		}
+	}
+	@media (max-width: $sizeIpad) {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 18px 50px;
+		grid-template-areas:
+			"input"
+			" . "
+			"button";
+		&__input{
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.10);
+			border-radius: 2px;
+			padding: 17px 10px 15px 20px;
+			font-size: 14px;
+		}
+		&__button{
+			height: 50px;
+			font-size: 16px;
 		}
 	}
 }

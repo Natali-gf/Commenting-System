@@ -12,6 +12,7 @@ export type Comment = {
 	id: Id,
 	parentId: Id | null,
 	answerIds: Id[],
+	lastAnswer: Date,
 	userPhoto: string,
 	userName: string,
 	dataComment: Date,

@@ -10,6 +10,7 @@ export function updateCommentsStorage(message: Comment) {
 		for (const comment of commentsStorage) {
 			if(comment.id === message.parentId) {
 				comment.answerIds.unshift(message.id);
+				comment.lastAnswer = message.dataComment;
 				break;
 			}
 		}

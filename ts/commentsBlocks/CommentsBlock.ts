@@ -30,24 +30,6 @@ export default class CommentsBlock implements IBlock {
 	private checkLocalStorage() {
 		// localStorage.clear();
 
-		// let startComments1 = startComments.sort((a: Comment, b: Comment)=>{
-		// 	if(a.dataComment < b.dataComment) return -1
-		// 	if(a.dataComment < b.dataComment) return 1
-		// 	if(a.dataComment < b.dataComment) return 0;
-		// })
-
-		// let startComments1 = startComments.sort((a: Comment, b: Comment)=>{
-		// 	return (b.rating.currentRating - a.rating.currentRating);
-		// })
-
-		let startComments1 = startComments.sort((a: Comment, b: Comment)=>{
-			if(b.dataComment < a.dataComment) return -1
-			if(b.dataComment > a.dataComment) return 1
-			return 0;
-		})
-		startComments1
-
-
 		if(!localStorage.getItem('allTheComments')){
 			localStorage.setItem('allTheComments', JSON.stringify(startComments));
 		}
@@ -61,7 +43,7 @@ export default class CommentsBlock implements IBlock {
 			localStorage.setItem('favoriteComments', JSON.stringify(favoriteComments));
 			console.log(favoriteComments)
 		}
-		// return startComments1;
+
 		return JSON.parse(localStorage.getItem('allTheComments'));
 	}
 }

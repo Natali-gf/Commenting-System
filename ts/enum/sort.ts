@@ -1,11 +1,11 @@
-export enum SortBy {
-	date = 'По дате',
-	rating = 'По количеству оценок',
-	relevance = 'По актуальности',
-	answers = 'По количеству ответов'
+export enum SortType {
+	Date,
+	Rating,
+	Relevance,
+	Answers
 }
 
-export enum Sort {
+export enum OrderBy {
 	Ask,
 	Desc
 }

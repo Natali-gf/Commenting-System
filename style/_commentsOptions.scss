@@ -1,32 +1,78 @@
-.sort {
-
-	&__title {
-		border-bottom: 1px solid $colorGrey;
+.option {
+	display: flex;
+	gap: 30px;
+	&__favorite {
+		display: flex;
+		align-items: flex-end;
+		white-space: nowrap;
+		font-size: 18px;
 		font-weight: 400;
+		color: $colorGrey;
+		background: none;
+		&::before {
+			width: 23px;
+			height: 23px;
+			margin-right: 8px;
+		}
+		&_in {
+			&::before {
+				content: url(../assets/icons/favorite_in.svg);
+			}
+		}
+		&_out {
+			&::before {
+				content: url(../assets/icons/favorite_out.svg);
+			}
+		}
+
 	}
-	&__list{
-		display: none;
-		flex-direction: column;
-		position: absolute;
-		list-style: none;
-		margin-top: 10px;
-		width: 229px;
-		box-shadow: 0 0 10px $colorGrey;
-		gap: 5px;
-		padding: 8px 8px 8px 30px;
-		background-color: white;
-		border-radius: 5px;
-		box-sizing: border-box;
-	}
-	&__item{
-		font-size: 16px;
-		line-height: 19px;
+	&__answer {
+		display: flex;
+		align-items: flex-end;
+		font-size: 18px;
+		font-weight: 400;
+		color: $colorGrey;
+		background: none;
+		&::before {
+			content: url(../assets/icons/answer.svg);
+			width: 22px;
+			height: 22px;
+			margin-right: 8px;
+		}
 	}
 }
 
-.favorite {
-	&__title {
-		border-bottom: 1px solid $colorGrey;
-		font-weight: 400;
+.rating {
+	display: flex;
+	gap: 10px;
+	&__currentNumber {
+		font-size: 18px;
+		font-weight: 500;
+	}
+	&__increment {
+		background-color: transparent;
+		&::before {
+			content: url(../assets/icons/plus.svg);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			background-color: $colorGreySecondary;
+		}
+	}
+	&__decrement {
+		background-color: transparent;
+		&::before {
+			content: url(../assets/icons/minus.svg);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			background-color: $colorGreySecondary;
+		}
 	}
 }

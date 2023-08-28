@@ -1,4 +1,9 @@
+import { startComments } from "./data/data.js";
+import { changeUserPhoto } from "./helpers/forUsers.js";
 import Body from "./mainBlocks/Body.js";
 
 const body: Body = new Body();
-body.rendering();
+changeUserPhoto(startComments).then((data) => {
+	body.checkLocalStorage(data);
+	body.rendering();
+});

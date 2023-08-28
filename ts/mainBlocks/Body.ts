@@ -1,3 +1,4 @@
+import { Comment } from "../others/Config.js";
 import Aside from "./Aside.js";
 import Header from "./Header.js";
 import Main from "./Main.js";
@@ -22,5 +23,21 @@ export default class Body {
 		this.header.rendering();
 		this.aside.rendering();
 		this.main.rendering();
+	}
+
+	public checkLocalStorage(comments: Comment[]) {
+
+		if(!localStorage.getItem('allTheComments')){
+			let favoriteComments: Comment[] = [];
+			comments.forEach((comment: Comment) => {
+				if(comment.isFavorite) {
+					favoriteComments.push(comment)
+				}
+			})
+			localStorage.setItem('allTheComments', JSON.stringify(comments));
+			localStorage.setItem('favoriteComments', JSON.stringify(favoriteComments));
+		}
+
+		return JSON.parse(localStorage.getItem('allTheComments'));
 	}
 }

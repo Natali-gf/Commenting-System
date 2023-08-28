@@ -223,6 +223,10 @@
   border-bottom: 1px solid #A1A1A1;
   font-weight: 400;
 }
+.favorite__title_active {
+  text-shadow: 2px 2px 1px #D9D9D9;
+  font-size: 18px;
+}
 
 .option {
   display: flex;
@@ -236,6 +240,7 @@
   font-weight: 400;
   color: #A1A1A1;
   background: none;
+  cursor: pointer;
 }
 .option__favorite::before {
   width: 23px;
@@ -255,6 +260,7 @@
   font-weight: 400;
   color: #A1A1A1;
   background: none;
+  cursor: pointer;
 }
 .option__answer::before {
   content: url(../assets/icons/answer.svg);
@@ -271,31 +277,24 @@
   font-size: 18px;
   font-weight: 500;
 }
-.rating__increment {
+.rating__increment, .rating__decrement {
   background-color: transparent;
+  cursor: pointer;
+}
+.rating__increment::before, .rating__decrement::before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #D9D9D9;
 }
 .rating__increment::before {
   content: url(../assets/icons/plus.svg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #D9D9D9;
-}
-.rating__decrement {
-  background-color: transparent;
 }
 .rating__decrement::before {
   content: url(../assets/icons/minus.svg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #D9D9D9;
 }
 
 .form-block {

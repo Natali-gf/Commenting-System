@@ -1,4 +1,4 @@
-import UserComments from "../commentsBlock/UserComments.js";
+import UserComments from "../commentsBlocks/UserComments.js";
 import { IBlock, Id, Comment, IEventBlock } from "../others/Config.js";
 import User from "../others/User.js";
 import { checkUserId } from "../helpers/forRating.js";
@@ -49,7 +49,7 @@ export class Rating implements IBlock {
 		} else {
 			commentsStorage = updateRatingComment(comment.id, -1, this.user.userId, RatingType.Dislike);
 		}
-		
+
 		this.updateComments(commentsStorage);
 	}
 

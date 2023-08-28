@@ -4,6 +4,7 @@ import Notification from "../others/Notification.js";
 import User from "../others/User.js";
 import { updateCommentsStorage } from "../helpers/storage.js";
 import { FavoriteComment } from "../enum/favorite.js";
+import CommentsHeader from "./CommentsHeader.js";
 
 export default class FormBlock implements IBlock {
 	parentBlock: HTMLDivElement = document.createElement('div');
@@ -30,7 +31,6 @@ export default class FormBlock implements IBlock {
 		console.log(comment?.id, comment!= undefined)
 		this.parentBlock.className = this.blockClassName;
 		this.formBlock = document.querySelector('.form-block');
-		// this.formBlock.innerHTML = '';
 
 		this.formBlock.innerHTML = `
 					<img class="form-block__user_photo user_photo"
@@ -94,7 +94,6 @@ console.log(JSON.parse(localStorage.getItem('allTheComments')))
 
 	private sendForm(e: Event){
 		e.preventDefault();
-		console.log(e.target[0].value);
 
 		const message: Comment = {
 			id: crypto.randomUUID(),
@@ -104,16 +103,21 @@ console.log(JSON.parse(localStorage.getItem('allTheComments')))
 			userName: this.user.userName,
 			dataComment: new Date(),
 			isFavorite: FavoriteComment.Out,
+			noParentForFavorite: false,
 			rating: {
 				currentRating: this.config.defaultRating,
 				votes: []
 			},
 			textComment: e.target[0].value,
 		}
-console.log(message,'m')
+
 		this.userComments.rendering(updateCommentsStorage(message));
-		this.notifications.resetTextNotification();
-		e.target[0].value = '';
+		// this.notifications.resetTextNotification();
+		// e.target[0].value = '';
 		this.isAnswer = null;
+		this.isButtonDisabled = true;
+		this.rendering();
+		const comentsHeader = new CommentsHeader()
+		comentsHeader.rendering();
 	}
 }

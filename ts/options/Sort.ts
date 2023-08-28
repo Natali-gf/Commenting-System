@@ -30,4 +30,8 @@ export default class Sort implements IBlock {
 			console.log()
 		})
 	}
+
+	public sortBy(){
+		
+	}
 }

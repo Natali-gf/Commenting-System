@@ -9,6 +9,7 @@
 		font-weight: 400;
 		color: $colorGrey;
 		background: none;
+		cursor: pointer;
 		&::before {
 			width: 23px;
 			height: 23px;
@@ -33,6 +34,7 @@
 		font-weight: 400;
 		color: $colorGrey;
 		background: none;
+		cursor: pointer;
 		&::before {
 			content: url(../assets/icons/answer.svg);
 			width: 22px;
@@ -49,10 +51,10 @@
 		font-size: 18px;
 		font-weight: 500;
 	}
-	&__increment {
+	&__increment, &__decrement {
 		background-color: transparent;
+		cursor: pointer;
 		&::before {
-			content: url(../assets/icons/plus.svg);
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -62,17 +64,14 @@
 			background-color: $colorGreySecondary;
 		}
 	}
+	&__increment {
+		&::before {
+			content: url(../assets/icons/plus.svg);
+		}
+	}
 	&__decrement {
-		background-color: transparent;
 		&::before {
 			content: url(../assets/icons/minus.svg);
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 20px;
-			height: 20px;
-			border-radius: 50%;
-			background-color: $colorGreySecondary;
 		}
 	}
 }

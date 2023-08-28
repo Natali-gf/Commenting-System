@@ -17,6 +17,7 @@ export type Comment = {
 	dataComment: Date,
 	textComment: string,
 	isFavorite: FavoriteComment,
+	noParentForFavorite: boolean,
 	rating: {
 		currentRating: number,
 		votes: RatingVotes[]

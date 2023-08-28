@@ -14,15 +14,16 @@ export default class CommentsHeader implements IBlock {
 	}
 
 	public rendering(){
-		this.parentBlock.className = 'comments__header';
-		this.parentBlock.innerHTML = `
-						<div class="comments__title">
-							<h3>Комментарии</h3>
-							<div id="countedComments" class="comments__amount">(${JSON.parse(localStorage.getItem('allTheComments')).length})</div>
-						</div>`;
+		this.parentBlock.className = this.blockClassName;
+		const renderedBlock: HTMLElement = document.querySelector(`.${this.blockClassName}`);
+		renderedBlock.innerHTML = `
+				<div class="comments__title">
+					<h3>Комментарии</h3>
+					<div id="countedComments" class="comments__amount">(${JSON.parse(localStorage.getItem('allTheComments')).length})</div>
+				</div>`;
 
-		this.parentBlock.append(this.sort.parentBlock);
-		this.parentBlock.append(this.favorite.parentBlock);
+		renderedBlock.append(this.sort.parentBlock);
+		renderedBlock.append(this.favorite.parentBlock);
 		this.sort.rendering();
 		this.favorite.rendering();
 	}

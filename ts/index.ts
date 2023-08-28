@@ -1,4 +1,4 @@
-import CommentsBlock from "./commentsBlock/CommentsBlock.js";
+import CommentsBlock from "./commentsBlocks/CommentsBlock.js";
 import Config from "./others/Config.js";
 import { startComments } from "./data/data.js";
 import Aside from "./mainBlocks/Aside.js";

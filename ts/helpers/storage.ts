@@ -25,7 +25,7 @@ export function updateFavoriteStorage(comment: Comment) {
 
 	for (const item of commentsStorage) {
 		if(item.id === comment.id) {
-			if(comment.isFavorite === FavoriteComment.Out){
+			if(comment.isFavorite === FavoriteComment.In){
 				item.isFavorite = FavoriteComment.In;
 				favoriteComments.unshift(item);
 			} else {

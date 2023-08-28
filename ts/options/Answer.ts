@@ -1,7 +1,4 @@
-import FormBlock from "../commentsBlock/FormBlock.js";
-import UserComments from "../commentsBlock/UserComments.js";
-import { FavoriteComment } from "../enum/favorite.js";
-import { updateFavoriteStorage } from "../helpers/storage.js";
+import FormBlock from "../commentsBlocks/FormBlock.js";
 import { Comment, IBlock } from "../others/Config.js";
 
 export default class Answer implements IBlock {

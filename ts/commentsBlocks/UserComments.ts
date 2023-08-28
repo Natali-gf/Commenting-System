@@ -24,19 +24,17 @@ export default class UserComments implements IBlock {
 
 		commentsStorage.forEach((userComment: Comment, index: number) => {
 			if(userComment.answerIds.length){
-				this.commentRendering(userComment, index, commentsStorage);
+				this.commentRendering(userComment, index);
 				commentsStorage.filter((comment: Comment) => (
 					userComment.answerIds.some((id: Id) => comment.id === id)))
-						.map((comment: Comment) => this.commentRendering(comment, Math.random(), commentsStorage))
-			} else if(userComment.parentId === null){
-				this.commentRendering(userComment, index, commentsStorage);
+						.map((comment: Comment) => this.commentRendering(comment, Math.random()))
+			} else if(userComment.parentId === null || userComment.noParentForFavorite){
+				this.commentRendering(userComment, index);
 			}
-
-
 		})
 	}
 
-	private commentRendering(userComment: Comment, index: number, commentsStorage: Comment[]) {
+	private commentRendering(userComment: Comment, index: number) {
 		const commentBlock: HTMLDivElement = document.createElement('div');
 		commentBlock.className = 'comments__comment comment';
 		this.userCommentsBlock.append(commentBlock);
@@ -48,8 +46,10 @@ export default class UserComments implements IBlock {
 		let answerToUserName: string;
 
 		if(userComment.parentId){
-			commentBlock.classList.add('comment_answer');
-			answerToUserName = getUserNameByParentId(userComment.parentId, commentsStorage);
+			if(!userComment.noParentForFavorite){
+				commentBlock.classList.add('comment_answer');
+			}
+			answerToUserName = getUserNameByParentId(userComment.parentId);
 		}
 
 		commentBlock.innerHTML += `

@@ -47,9 +47,6 @@
 		position: absolute;
 		opacity: 0;
 	}
-	&__input + &__label::before {
-		// display: flex;
-	}
 	&__input:checked + &__label::before {
 		position: absolute;
 		margin-left: -22px;
@@ -62,5 +59,9 @@
 	&__title {
 		border-bottom: 1px solid $colorGrey;
 		font-weight: 400;
+		&_active {
+			text-shadow: 2px 2px 1px $colorGreySecondary;
+			font-size: 18px;
+		}
 	}
 }

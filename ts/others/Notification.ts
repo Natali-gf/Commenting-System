@@ -26,9 +26,9 @@ export default class Notification {
 		}
 	}
 
-	public resetTextNotification() {
-		this.textNotification.textContent = this.descriptionMessage;
-	}
+	// public resetTextNotification() {
+	// 	this.textNotification.textContent = this.descriptionMessage;
+	// }
 
 	public rendering(){
 		this.textNotification.className = 'form-block__notification';

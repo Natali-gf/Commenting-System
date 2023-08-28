@@ -12,6 +12,7 @@ export const startComments: Comment[] = [
 		userName: 'Мистер_душнила',
 		dataComment: new Date('2023-08-22T09:11:04+03:00'),
 		isFavorite: FavoriteComment.Out,
+		noParentForFavorite: false,
 		rating: {
 			currentRating: -4,
 			votes: [
@@ -43,6 +44,7 @@ export const startComments: Comment[] = [
 		userName: 'Максим Авдеенко',
 		dataComment: new Date('2023-08-21T18:40:24+03:00'),
 		isFavorite: FavoriteComment.Out,
+		noParentForFavorite: false,
 		rating: {
 			currentRating: 0,
 			votes: []
@@ -57,6 +59,7 @@ export const startComments: Comment[] = [
 		userName: 'Алексей_1994b',
 		dataComment: new Date('2023-08-18T13:55:40+03:00'),
 		isFavorite: FavoriteComment.In,
+		noParentForFavorite: false,
 		rating: {
 			currentRating: 5,
 			votes: [{
@@ -87,6 +90,7 @@ export const startComments: Comment[] = [
 		userName: 'Джунбокс3000',
 		dataComment: new Date('2023-08-18T15:18:47+03:00'),
 		isFavorite: FavoriteComment.Out,
+		noParentForFavorite: false,
 		rating: {
 			currentRating: 3,
 			votes: [
@@ -114,6 +118,7 @@ export const startComments: Comment[] = [
 		userName: 'Мистер_душнила',
 		dataComment: new Date('2023-08-19T09:11:04+03:00'),
 		isFavorite: FavoriteComment.Out,
+		noParentForFavorite: false,
 		rating: {
 			currentRating: -5,
 			votes: [

@@ -1,4 +1,4 @@
-import CommentsBlock from "../commentsBlock/CommentsBlock.js";
+import CommentsBlock from "../commentsBlocks/CommentsBlock.js";
 import { IBlock } from "../others/Config.js";
 
 export default class Main implements IBlock {

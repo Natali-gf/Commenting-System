@@ -1,4 +1,4 @@
-import { IBlock, ParentElement } from "../others/Config.js";
+import { IBlock } from "../others/Config.js";
 import Favorite from "../options/Favorite.js";
 import Sort from "../options/Sort.js";
 import CommentsCounter from "../options/CommentsCounter.js";
@@ -24,6 +24,5 @@ export default class CommentsHeader implements IBlock {
 		this.commentsCounter.rendering();
 		this.sort.rendering();
 		this.favorite.rendering();
-		// console.log(this.favorite.useFavorite)
 	}
 }

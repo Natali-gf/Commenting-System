@@ -36,16 +36,14 @@ export default class Favorite implements IBlock {
 	public filterComments(commentsStorage: Comment[]) {
 		const comments: UserComments = new UserComments();
 
-		let commentsWithoutParrent = commentsStorage.forEach(answer => {
+		commentsStorage.forEach(answer => {
 			if(answer.parentId != null
 				&& !commentsStorage.some(item => answer.parentId === item.id)) {
 					answer.noParentForFavorite = true;
-					// return answer;
 			}
 
 		})
-console.log(JSON.parse(localStorage.getItem('favoriteComments')))
-		console.log(commentsWithoutParrent, commentsStorage)
+
 		comments.rendering(commentsStorage);
 	}
 }

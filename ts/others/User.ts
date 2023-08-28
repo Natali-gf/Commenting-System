@@ -23,6 +23,7 @@ export default class User {
 				console.log('error', error);
 				// this.userPhoto = response.url;
 			})
+			this.userPhoto = randomPitureUrl;
 		return randomPitureUrl;
 	}
 }

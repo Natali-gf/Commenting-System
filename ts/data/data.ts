@@ -1,42 +1,8 @@
 import { FavoriteComment } from "../enum/favorite.js";
 import { RatingType } from "../enum/rating.js";
 import { Comment } from "../others/Config.js";
-import User from "../others/User.js";
 
 export const startComments: Comment[] = [
-	// {
-	// 	id: '7c6bfb11-51cd-4763-9795-786d18d65396',
-	// 	parentId: 'f02ece3c-7a61-4475-a834-98d65ecf1b42',
-	// 	answerIds: [],
-	// 	lastAnswer: new Date('2023-08-02T09:11:04+03:00'),
-	// 	userPhoto: 'assets/images/user_4.png',
-	// 	userName: 'Мистер_душнила',
-	// 	dataComment: new Date('2023-08-02T09:11:04+03:00'),
-	// 	isFavorite: FavoriteComment.Out,
-	// 	noParentForFavorite: false,
-	// 	rating: {
-	// 		currentRating: -4,
-	// 		votes: [
-	// 			{
-	// 				userId: 'f02ece3c-7a61-4475-a834-98d65ecf1b42',
-	// 				type: RatingType.Dislike,
-	// 			},
-	// 			{
-	// 				userId: 'ce4bfff8-08e6-4e3a-9cc0-ac8ae75ee424',
-	// 				type: RatingType.Dislike,
-	// 			},
-	// 			{
-	// 				userId: 'f75f9eec-169e-49d1-a7bc-8dafd46a193f',
-	// 				type: RatingType.Dislike,
-	// 			},
-	// 			{
-	// 				userId: '135f42f7-c467-42bd-863f-d00836ce156c',
-	// 				type: RatingType.Dislike,
-	// 			},
-	// 		]
-	// 	},
-	// 	textComment: `Какую-то дичь несешь, братиш!`,
-	// },
 	{
 		id: 'ce4bfff8-08e6-4e3a-9cc0-ac8ae75ee424',
 		parentId: null,

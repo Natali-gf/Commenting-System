@@ -1,5 +1,5 @@
 import UserComments from "../commentsBlocks/UserComments.js";
-import { IBlock, Id, Comment, IEventBlock } from "../others/Config.js";
+import { IBlock, Id, Comment } from "../others/Config.js";
 import User from "../others/User.js";
 import { checkUserId } from "../helpers/forRating.js";
 import { updateRatingComment } from "../helpers/storage.js";

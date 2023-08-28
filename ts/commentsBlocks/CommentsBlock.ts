@@ -18,13 +18,14 @@ export default class CommentsBlock implements IBlock {
 	}
 
 	public rendering(){
+		const commentsStorage = this.checkLocalStorage()
 		this.parentBlock.className = this.blockClassName;
 		this.parentBlock.append(this.commentsHeader.parentBlock);
 		this.parentBlock.append(this.formBlock.parentBlock);
 		this.parentBlock.append(this.userComments.parentBlock);
 		this.commentsHeader.rendering();
 		this.formBlock.rendering();
-		this.userComments.rendering(this.checkLocalStorage());
+		this.userComments.rendering(commentsStorage);
 	}
 
 	private checkLocalStorage() {
@@ -41,7 +42,6 @@ export default class CommentsBlock implements IBlock {
 				}
 			})
 			localStorage.setItem('favoriteComments', JSON.stringify(favoriteComments));
-			console.log(favoriteComments)
 		}
 
 		return JSON.parse(localStorage.getItem('allTheComments'));

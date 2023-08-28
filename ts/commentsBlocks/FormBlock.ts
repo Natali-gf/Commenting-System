@@ -54,7 +54,6 @@ export default class FormBlock implements IBlock {
 		if(comment != undefined){
 			this.isAnswer = comment.id;
 			this.btnCancel = document.getElementById('btnCancel');
-			console.log(this.btnCancel, document.getElementById('btnCancel'))
 		}
 
 		this.addEvents();

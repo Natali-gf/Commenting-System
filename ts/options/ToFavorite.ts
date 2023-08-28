@@ -1,4 +1,3 @@
-import UserComments from "../commentsBlocks/UserComments.js";
 import { FavoriteComment } from "../enum/favorite.js";
 import { updateFavoriteStorage } from "../helpers/storage.js";
 import { Comment, IBlock } from "../others/Config.js";
@@ -53,7 +52,7 @@ export default class ToFavorite implements IBlock {
 			this.isFavoriteComment = FavoriteComment.In
 			comment.isFavorite = FavoriteComment.In
 		}
-		console.log(comment)
+
 		updateFavoriteStorage(comment);
 	}
 }

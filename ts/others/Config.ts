@@ -38,8 +38,4 @@ export interface IEventBlock extends IBlock{
 export default class Config {
 	maxMessageLength: number = 1000;
 	defaultRating: number = 0;
-
-	constructor(){
-		// this.contentBlock = document.getElementById('content');
-	}
 }

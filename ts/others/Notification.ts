@@ -1,4 +1,4 @@
-import Config, { IBlock } from "./Config.js";
+import Config from "./Config.js";
 
 export default class Notification {
 	errorMessage: string = 'Слишком длинное сообщение';
@@ -25,10 +25,6 @@ export default class Notification {
 			this.isError = false;
 		}
 	}
-
-	// public resetTextNotification() {
-	// 	this.textNotification.textContent = this.descriptionMessage;
-	// }
 
 	public rendering(){
 		this.textNotification.className = 'form-block__notification';

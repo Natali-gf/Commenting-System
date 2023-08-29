@@ -108,7 +108,7 @@ export default class FormBlock {
 			},
 			textComment: this.inputValue,
 		}
-console.log(message)
+		
 		this.inputValue = ''
 		this.isAnswer = null;
 		this.isButtonDisabled = true;

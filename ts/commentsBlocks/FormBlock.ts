@@ -50,7 +50,7 @@ export default class FormBlock {
 			btnCancel = <HTMLButtonElement>document.getElementById('btnCancel');
 			this.isAnswer = comment.id;
 		}
-		
+
 		const notifications: Notification = new Notification();
 		renderedBlock.append(notifications.textNotification);
 		renderedBlock.append(notifications.errorNotification);
@@ -108,7 +108,7 @@ export default class FormBlock {
 			},
 			textComment: this.inputValue,
 		}
-
+console.log(message)
 		this.inputValue = ''
 		this.isAnswer = null;
 		this.isButtonDisabled = true;

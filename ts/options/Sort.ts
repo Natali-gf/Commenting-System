@@ -52,7 +52,6 @@ export default class Sort implements IBlock {
 	private addEvents(sortList: HTMLUListElement, orderBtn: HTMLButtonElement, sortTitle: HTMLElement): void {
 		sortTitle.addEventListener('click', (): void => {
 			sortList.classList.toggle('hidden');
-			console.log(Favorite.useFavorite)
 		})
 
 		sortList.addEventListener('click', (e: Event): void => {

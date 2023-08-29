@@ -1,8 +1,25 @@
 import { FavoriteComment } from "../enum/favorite.js";
 import { RatingType } from "../enum/rating.js";
 import { Comment } from "../others/Config.js";
+import User from "../others/User.js";
 
 export const startComments: Comment[] = [
+	{
+		id: '74ace003-042b-4fbc-a6d4-5dc2db2599d6',
+		parentId: null,
+		answerIds: [],
+		lastAnswer: new Date('2023-08-28T10:01:38+03:00'),
+		userPhoto: `${User._userPhoto}`,
+		userName: `Про_код`,
+		dataComment: new Date('2023-08-28T10:01:38+03:00'),
+		isFavorite: FavoriteComment.In,
+		noParentForFavorite: false,
+		rating: {
+			currentRating: 2,
+			votes: []
+		},
+		textComment: `Вопрос: В классе "Answer" есть закомментированный кусок кода выдаёт следующую ошибку "Property 'selectstart' does not exist on type 'HTMLAreaElement'". При этом если код раскомментировать, то он работает и выполняет задуманное действие (только подчёркивает красным и говорит об ошибке). Я не понимаю почему текст ошибки говорит, что это свойство не существует, ведь если пройти по пути "type 'HTMLAreaElement'" - свойство 'selectstart' там есть. (в классе "Answer" оставила подобный комментарий, строка 20). Я хотела, чтобы если пользовательнаписал часть комментария, а затем захотел отправить его в качестве ответа, нажав на кнопку "ответить", то чтобы фокус в был не в начале введённого текста, а в конце.`
+	},
 	{
 		id: 'ce4bfff8-08e6-4e3a-9cc0-ac8ae75ee424',
 		parentId: null,
@@ -15,7 +32,13 @@ export const startComments: Comment[] = [
 		noParentForFavorite: false,
 		rating: {
 			currentRating: 0,
-			votes: []
+			votes: [{
+				userId: 'f02ece3c-7a61-4475-a834-98d65ecf1b42',
+				type: RatingType.Like,
+			},{
+				userId: 'ce4bfff8-08e6-4e3a-9cc0-ac8ae75ee424',
+				type: RatingType.Like,
+			},]
 		},
 		textComment: `Называть проект Молочникова, в котором играют прекрасные Янковский и Эйдельштейн, 'сериалом с блогерами' - это реально несправедливо. К тому же, у Молочникова уже играла в спектакле Екатерина Варнава, которая тоже не актриса, и получилось отлично. Так что, вполне возможно, и Ивлеева с хорошим режиссером себя еще покажет Варнава, которая тоже не актриса, и получилось отлично. Так что, вполне возможно, и Ивлеева с хорошим режиссером себя еще покажет.`,
 	},
@@ -33,19 +56,19 @@ export const startComments: Comment[] = [
 			currentRating: 5,
 			votes: [{
 					userId: 'f02ece3c-7a61-4475-a834-98d65ecf1b42',
-					type: RatingType.Dislike,
+					type: RatingType.Like,
 				},{
 					userId: 'ce4bfff8-08e6-4e3a-9cc0-ac8ae75ee424',
-					type: RatingType.Dislike,
+					type: RatingType.Like,
 				},{
 					userId: 'f75f9eec-169e-49d1-a7bc-8dafd46a193f',
-					type: RatingType.Dislike,
+					type: RatingType.Like,
 				},{
 					userId: '135f42f7-c467-42bd-863f-d00836ce156c',
-					type: RatingType.Dislike,
+					type: RatingType.Like,
 				},{
 					userId: '7c6bfb11-51cd-4763-9795-786d18d65395',
-					type: RatingType.Dislike,
+					type: RatingType.Like,
 				},
 			]
 		},

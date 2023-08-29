@@ -17,7 +17,7 @@ export default class Answer implements IBlock {
 		this._parentBlock.addEventListener('click', (): void => {
 			FormBlock.rendering(comment);
 			FormBlock._textarea.focus();
-//! закомментированный кусок кода выдаёт следующую ошибкуЖ
+//! закомментированный кусок кода выдаёт следующую ошибку
 //! Property 'selectstart' does not exist on type 'HTMLAreaElement'.
 //! при этом если код раскомментировать, то он работает и выполняет задуманное действие
 //! только подчёркивает красным и говорит об ошибке

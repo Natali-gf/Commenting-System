@@ -163,6 +163,9 @@
   .comments__title {
     margin-right: 100%;
   }
+  .comments__sort, .comments__favorite {
+    margin-top: -15px;
+  }
 }
 
 .comment {

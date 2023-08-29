@@ -12,7 +12,7 @@ export default class FormBlock {
 	public static _textarea: HTMLAreaElement;
 	private blockClassName: string = 'form-block comments__form-block';
 	private static isAnswer: Id | null = null;
-	private static isButtonDisabled: boolean = true;
+	private static isButtonDisabled: boolean;
 	private static config: Config;
 
 	public constructor() {
@@ -21,6 +21,7 @@ export default class FormBlock {
 	}
 
 	public static rendering(comment?: Comment): void {
+		FormBlock.isButtonDisabled = true
 		const renderedBlock: HTMLElement = document.querySelector('.form-block');
 
 		renderedBlock.innerHTML = `

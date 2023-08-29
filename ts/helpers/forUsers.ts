@@ -11,23 +11,23 @@ export function getUserNameByParentId(parentId: Id): string {
 }
 
 export async function getRandomUserPhoto(): Promise<string> {
-	return new Promise<string>((resolve) => {
+	return new Promise<string>((resolve): void => {
 		fetch(`https://picsum.photos/61/61`)
-			.then((response) => {
+			.then((response: any) => {
 				let randomPitureUrl: string = response.url;
 				resolve(randomPitureUrl);
 			})
-			.catch(error => {
+			.catch((error: any): void => {
 				console.log('error', error);
 			})
 	})
 }
 
 export async function changeUserPhoto(comments: Comment[]): Promise<Comment[]> {
-	return new Promise<Comment[]>((resolve) => {
-		comments.forEach((comment: Comment, index: number) => {
+	return new Promise<Comment[]>((resolve): void => {
+		comments.forEach((comment: Comment, index: number): void => {
 
-			getRandomUserPhoto().then((url) => {
+			getRandomUserPhoto().then((url: string): void => {
 				comment.userPhoto = url;
 
 				if(index === comments.length - 1){

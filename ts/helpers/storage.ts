@@ -52,16 +52,17 @@ export function updateRatingComment(messageId: Id, changeTo: number, userId: Id,
 
 	for (const comment of commentsStorage) {
 		if(messageId === comment.id){
+			
 			if(votedType === RatingType.Neutral){
 				for (const idx in comment.rating.votes) {
 					if(comment.rating.votes[idx].userId === userId){
 						comment.rating.votes.splice(+idx, 1)
 					}
 				}
-
 			} else {
 				comment.rating.votes.push({ userId: userId, type: votedType })
 			}
+
 			comment.rating.currentRating += changeTo;
 			break;
 		}

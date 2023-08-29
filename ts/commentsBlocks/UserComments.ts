@@ -34,7 +34,7 @@ export default class UserComments {
 		})
 	}
 
-	public static commentRendering(userComment: Comment, index: number): void {
+	private static commentRendering(userComment: Comment, index: number): void {
 		const commentBlock: HTMLDivElement = document.createElement('div');
 		commentBlock.className = 'comments__comment comment';
 		this.userCommentsBlock.append(commentBlock);

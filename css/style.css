@@ -210,6 +210,7 @@
   display: grid;
   align-items: end;
   white-space: nowrap;
+  margin-bottom: 2px;
 }
 .comment__text {
   grid-area: text;
@@ -246,6 +247,7 @@
     padding: 0 0 0 5px;
     font-size: 12px;
     align-items: center;
+    margin-bottom: 0;
   }
   .comment__options {
     align-items: center;

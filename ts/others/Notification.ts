@@ -26,10 +26,12 @@ export default class Notification {
 		}
 	}
 
-	public rendering(): void {
+	public rendering(messageLength: number): void {
 		this._textNotification.className = 'form-block__notification';
 		this._errorNotification.className = 'form-block__error-message hidden';
-		this._textNotification.textContent = this.descriptionMessage;
+		this._textNotification.textContent = messageLength
+												? `${messageLength}/1000`
+												: this.descriptionMessage;
 		this._errorNotification.textContent = this.errorMessage;
 	}
 

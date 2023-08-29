@@ -10,6 +10,7 @@ import Favorite from "../options/Favorite.js";
 export default class FormBlock {
 	public _parentBlock: HTMLDivElement = document.createElement('div');
 	public static _textarea: HTMLAreaElement;
+	public static inputValue: string = '';
 	private blockClassName: string = 'form-block comments__form-block';
 	private static isAnswer: Id | null = null;
 	private static isButtonDisabled: boolean;
@@ -21,23 +22,26 @@ export default class FormBlock {
 	}
 
 	public static rendering(comment?: Comment): void {
-		FormBlock.isButtonDisabled = true
-		const renderedBlock: HTMLElement = document.querySelector('.form-block');
+		this.inputValue === ''
+				? FormBlock.isButtonDisabled = true
+				: FormBlock.isButtonDisabled = false;
 
+		const renderedBlock: HTMLElement = document.querySelector('.form-block');
 		renderedBlock.innerHTML = `
-					<img class="form-block__user_photo user_photo"
-						src="${User._userPhoto}"></img>
-					<div class="form-block__user_name user_name">${User._userName}</div>
-					${comment != undefined ?
-					`<div class="form-block__answer">
-						<div class="form-block__answer_user-name">${comment.userName}</div>
-						<button id="btnCancel" class="form-block__answer_cancel"></button>
-					</div>` : ''}
-					<form id="form" class="form-block__form form">
-						<textarea id="textarea" class="form__input" type="text" rows="1" required minlength="1"
-							placeholder="Введите текст сообщения..."></textarea>
-						<button id="buttonSend" class="form__button" type="submit" disabled>Отправить</button>
-					</form>`;
+				<img class="form-block__user_photo user_photo"
+					src="${User._userPhoto}"></img>
+				<div class="form-block__user_name user_name">${User._userName}</div>
+				${comment != undefined ?
+				`<div class="form-block__answer">
+					<div class="form-block__answer_user-name">${comment.userName}</div>
+					<button id="btnCancel" class="form-block__answer_cancel"></button>
+				</div>` : ''}
+				<form id="form" class="form-block__form form">
+					<textarea id="textarea" class="form__input" type="text" rows="1" required minlength="1"
+						placeholder="Введите текст сообщения...">${this.inputValue}</textarea>
+					<button id="buttonSend" class="form__button" type="submit"
+						${this.inputValue === '' ? "disabled" : ''}>Отправить</button>
+				</form>`;
 
 		FormBlock._textarea = <HTMLAreaElement>document.getElementById('textarea');
 		const form: HTMLFormElement = <HTMLFormElement>document.getElementById('form');
@@ -46,11 +50,11 @@ export default class FormBlock {
 			btnCancel = <HTMLButtonElement>document.getElementById('btnCancel');
 			this.isAnswer = comment.id;
 		}
-
+		
 		const notifications: Notification = new Notification();
 		renderedBlock.append(notifications.textNotification);
 		renderedBlock.append(notifications.errorNotification);
-		notifications.rendering();
+		notifications.rendering(this.inputValue.length);
 
 		this.addEvents(form, btnCancel, notifications);
 	}
@@ -70,14 +74,15 @@ export default class FormBlock {
 			const target: HTMLInputElement = <HTMLInputElement>e.target;
 			target.style.height = 'auto';
   			target.style.height = target.scrollHeight + 1 + "px";
+			this.inputValue = target.value;
 
 			notifications.changeDescription(target.value.length);
 
-			if(this.isButtonDisabled && target.value.length <= this.config.maxMessageLength){
+			if(this.isButtonDisabled && this.inputValue.length <= this.config.maxMessageLength){
 				btnSend.removeAttribute('disabled');
 				this.isButtonDisabled = false;
 			} else if(!this.isButtonDisabled
-						&& (target.value.length === 0 || target.value.length > this.config.maxMessageLength)) {
+						&& (this.inputValue.length === 0 || this.inputValue.length > this.config.maxMessageLength)) {
 							btnSend.setAttribute('disabled', 'true');
 							this.isButtonDisabled = true;
 			}
@@ -101,9 +106,10 @@ export default class FormBlock {
 				currentRating: this.config.defaultRating,
 				votes: [],
 			},
-			textComment: e.target[0].value,
+			textComment: this.inputValue,
 		}
 
+		this.inputValue = ''
 		this.isAnswer = null;
 		this.isButtonDisabled = true;
 

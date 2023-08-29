@@ -123,6 +123,7 @@
 	}
 	&__text {
 		grid-area: text;
+		word-break: break-word;
 	}
 	&__options {
 		grid-area: option;

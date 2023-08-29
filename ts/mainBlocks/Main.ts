@@ -23,11 +23,11 @@ export default class Main implements IBlock {
 			list.innerHTML += `<li class="main-section__item"></li>`
 		}
 
-		this._parentBlock.append(this.commentsBlock._parentBlock);
+		this._parentBlock.append(this.commentsBlock.parentBlock);
 		this.commentsBlock.rendering();
 	}
 
-	public parentBlock(): HTMLElement {
+	public get parentBlock(): HTMLElement {
 		return this._parentBlock;
 	}
 }

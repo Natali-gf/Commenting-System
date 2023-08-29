@@ -8,7 +8,7 @@ export default class Aside implements IBlock{
 		this._parentBlock.className = this.blockClassName;
 	}
 
-	public parentBlock(): HTMLElement {
+	public get parentBlock(): HTMLElement {
 		return this._parentBlock;
 	}
 }

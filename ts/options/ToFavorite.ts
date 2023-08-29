@@ -55,7 +55,7 @@ export default class ToFavorite implements IBlock {
 		})
 	}
 
-	public parentBlock(): HTMLButtonElement {
+	public get parentBlock(): HTMLButtonElement {
 		return this._parentBlock;
 	}
 }

@@ -14,7 +14,7 @@ export default class CommentsCounter implements IBlock {
 				</div>`;
 	}
 
-	public parentBlock(): HTMLDivElement {
+	public get parentBlock(): HTMLDivElement {
 		return this._parentBlock;
 	}
 }

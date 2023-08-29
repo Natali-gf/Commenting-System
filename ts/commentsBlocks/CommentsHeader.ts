@@ -18,15 +18,15 @@ export default class CommentsHeader implements IBlock {
 
 	public rendering(): void {
 		this._parentBlock.className = this.blockClassName;
-		this._parentBlock.append(this.commentsCounter._parentBlock);
-		this._parentBlock.append(this.sort._parentBlock);
-		this._parentBlock.append(this.favorite._parentBlock);
+		this._parentBlock.append(this.commentsCounter.parentBlock);
+		this._parentBlock.append(this.sort.parentBlock);
+		this._parentBlock.append(this.favorite.parentBlock);
 		this.commentsCounter.rendering();
 		this.sort.rendering();
 		this.favorite.rendering();
 	}
 
-	public parentBlock(): HTMLDivElement {
+	public get parentBlock(): HTMLDivElement {
 		return this._parentBlock;
 	}
 }

@@ -18,15 +18,15 @@ export default class CommentsBlock implements IBlock {
 
 	public rendering(): void {
 		this._parentBlock.className = this.blockClassName;
-		this._parentBlock.append(this.commentsHeader._parentBlock);
-		this._parentBlock.append(this.formBlock._parentBlock);
-		this._parentBlock.append(this.userComments._parentBlock);
+		this._parentBlock.append(this.commentsHeader.parentBlock);
+		this._parentBlock.append(this.formBlock.parentBlock);
+		this._parentBlock.append(this.userComments.parentBlock);
 		this.commentsHeader.rendering();
-		this.formBlock.rendering();
+		FormBlock.rendering();
 		UserComments.rendering(JSON.parse(localStorage.getItem('allTheComments')));
 	}
 
-	public parentBlock(): HTMLDivElement {
+	public get parentBlock(): HTMLDivElement {
 		return this._parentBlock;
 	}
 }

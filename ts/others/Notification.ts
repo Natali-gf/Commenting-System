@@ -33,10 +33,10 @@ export default class Notification {
 		this._errorNotification.textContent = this.errorMessage;
 	}
 
-	public textNotification(): HTMLDivElement {
+	public get textNotification(): HTMLDivElement {
 		return this._textNotification;
 	}
-	public errorNotification(): HTMLDivElement {
+	public get errorNotification(): HTMLDivElement {
 		return this._errorNotification;
 	}
 }

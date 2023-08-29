@@ -213,6 +213,7 @@
 }
 .comment__text {
   grid-area: text;
+  word-break: break-word;
 }
 .comment__options {
   grid-area: option;

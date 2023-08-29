@@ -8,11 +8,6 @@ import { RatingType } from "../enum/rating.js";
 export class Rating implements IBlock {
 	public _parentBlock: HTMLDivElement = document.createElement('div');
 	private blockClassName: string = 'option__rating rating';
-	private user: User;
-
-	public constructor() {
-		this.user = new User();
-	}
 
 	public rendering(comment: Comment, key: number): void {
 		this._parentBlock.className = this.blockClassName;
@@ -33,41 +28,37 @@ export class Rating implements IBlock {
 	}
 
 	public ratingDecrement(comment: Comment): void {
-		const isUserVoted = checkUserId(comment, this.user._userId);
+		const isUserVoted = checkUserId(comment, User._userId);
 		let commentsStorage: Comment[];
 
 		if (isUserVoted === RatingType.Dislike){
 			return;
 		} else if(isUserVoted === RatingType.Like){
-			commentsStorage = updateRatingComment(comment.id, -1, this.user._userId, RatingType.Neutral);
+			commentsStorage = updateRatingComment(comment.id, -1, User._userId, RatingType.Neutral);
 		} else {
-			commentsStorage = updateRatingComment(comment.id, -1, this.user._userId, RatingType.Dislike);
+			commentsStorage = updateRatingComment(comment.id, -1, User._userId, RatingType.Dislike);
 		}
 
-		this.updateComments(commentsStorage);
+		UserComments.rendering(commentsStorage);
 	}
 
 	public ratingIncrement(comment: Comment): void {
-		const isUserVoted = checkUserId(comment, this.user._userId);
+		const isUserVoted = checkUserId(comment, User._userId);
 		let commentsStorage: Comment[];
 
 		if (isUserVoted === RatingType.Like){
 			return;
 		} else if(isUserVoted === RatingType.Dislike){
-			commentsStorage = updateRatingComment(comment.id, +1, this.user._userId, RatingType.Neutral);
+			commentsStorage = updateRatingComment(comment.id, +1, User._userId, RatingType.Neutral);
 		} else {
-			commentsStorage = updateRatingComment(comment.id, +1, this.user._userId, RatingType.Like);
+			commentsStorage = updateRatingComment(comment.id, +1, User._userId, RatingType.Like);
 		}
 
-		this.updateComments(commentsStorage);
+		UserComments.rendering(commentsStorage);
 	}
 
-	private updateComments(commentsStorage: Comment[]): void {
-		const comments = new UserComments();
-		comments.rendering(commentsStorage);
-	}
 
-	public parentBlock(): HTMLDivElement {
+	public get parentBlock(): HTMLDivElement {
 		return this._parentBlock;
 	}
 }

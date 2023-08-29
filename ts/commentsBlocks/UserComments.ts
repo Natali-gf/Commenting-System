@@ -77,7 +77,7 @@ export default class UserComments {
 		rating.rendering(userComment, +index);
 	}
 
-	public parentBlock(): HTMLDivElement {
+	public get parentBlock(): HTMLDivElement {
 		return this._parentBlock;
 	}
 }

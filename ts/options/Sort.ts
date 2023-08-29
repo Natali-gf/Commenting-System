@@ -149,7 +149,7 @@ export default class Sort implements IBlock {
 			: localStorage.setItem('allTheComments', JSON.stringify(commentsStorage));
 	}
 
-	public parentBlock(): HTMLDivElement {
+	public get parentBlock(): HTMLDivElement {
 		return this._parentBlock;
 	}
 }

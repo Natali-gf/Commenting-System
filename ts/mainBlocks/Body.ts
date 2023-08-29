@@ -17,9 +17,9 @@ export default class Body {
 	}
 
 	public rendering(): void {
-		Body._body.append(this.header._parentBlock);
-		Body._body.append(this.aside._parentBlock);
-		Body._body.append(this.main._parentBlock);
+		Body._body.append(this.header.parentBlock);
+		Body._body.append(this.aside.parentBlock);
+		Body._body.append(this.main.parentBlock);
 		this.header.rendering();
 		this.aside.rendering();
 		this.main.rendering();
@@ -41,7 +41,7 @@ export default class Body {
 		return JSON.parse(localStorage.getItem('allTheComments'));
 	}
 
-	public body(): HTMLBodyElement {
+	public get body(): HTMLBodyElement {
 		return Body._body;
 	}
 }

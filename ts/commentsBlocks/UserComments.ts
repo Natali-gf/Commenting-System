@@ -6,13 +6,16 @@ import Answer from "../options/Answer.js";
 
 
 
-export default class UserComments implements IBlock {
+export default class UserComments {
 	public _parentBlock: HTMLDivElement = document.createElement('div');
 	private blockClassName: string = 'comments__user-comments';
-	private userCommentsBlock: Element;
+	private static userCommentsBlock: Element;
 
-	public rendering(commentsStorage: Comment[]): void {
+	constructor() {
 		this._parentBlock.className = this.blockClassName;
+	}
+
+	public static rendering(commentsStorage: Comment[]): void {
 		this.userCommentsBlock = document.querySelector('.comments__user-comments');
 		this.userCommentsBlock.innerHTML = '';
 
@@ -31,7 +34,7 @@ export default class UserComments implements IBlock {
 		})
 	}
 
-	private commentRendering(userComment: Comment, index: number): void {
+	public static commentRendering(userComment: Comment, index: number): void {
 		const commentBlock: HTMLDivElement = document.createElement('div');
 		commentBlock.className = 'comments__comment comment';
 		this.userCommentsBlock.append(commentBlock);

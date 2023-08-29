@@ -5,6 +5,7 @@ import User from "../others/User.js";
 import { updateCommentsStorage } from "../helpers/storage.js";
 import { FavoriteComment } from "../enum/favorite.js";
 import CommentsCounter from "../options/CommentsCounter.js";
+import Favorite from "../options/Favorite.js";
 
 export default class FormBlock implements IBlock {
 	public _parentBlock: HTMLDivElement = document.createElement('div');
@@ -15,13 +16,11 @@ export default class FormBlock implements IBlock {
 	private user: User;
 	private notifications: Notification;
 	private config: Config;
-	private userComments: UserComments;
 
 	public constructor() {
 		this.user = new User();
 		this.notifications = new Notification();
 		this.config = new Config();
-		this.userComments = new UserComments();
 	}
 
 	public rendering(comment?: Comment): void {
@@ -110,7 +109,12 @@ export default class FormBlock implements IBlock {
 		this.isAnswer = null;
 		this.isButtonDisabled = true;
 
-		this.userComments.rendering(updateCommentsStorage(message));
+		let commentsStorage = updateCommentsStorage(message);
+		commentsStorage = Favorite.useFavorite
+				? JSON.parse(localStorage.getItem('favoriteComments'))
+				: commentsStorage;
+
+		UserComments.rendering(commentsStorage);
 		this.rendering();
 		const comentsCounter = new CommentsCounter()
 		comentsCounter.rendering();

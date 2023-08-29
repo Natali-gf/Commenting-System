@@ -21,11 +21,6 @@ export default class Sort implements IBlock {
 	private blockClassName: string = 'comments__sort sort';
 	private currentOrderBy: OrderBy = OrderBy.Desc;
 	private currentSortType: SortType = SortType.Date;
-	private userComments: UserComments;
-
-	public constructor() {
-		this.userComments = new UserComments()
-	}
 
 	public rendering() {
 		this._parentBlock.className = this.blockClassName;
@@ -148,7 +143,7 @@ export default class Sort implements IBlock {
 				break;
 		}
 
-		this.userComments.rendering(commentsStorage);
+		UserComments.rendering(commentsStorage);
 		Favorite.useFavorite
 			? localStorage.setItem('favoriteComments', JSON.stringify(commentsStorage))
 			: localStorage.setItem('allTheComments', JSON.stringify(commentsStorage));

@@ -23,7 +23,7 @@ export default class CommentsBlock implements IBlock {
 		this._parentBlock.append(this.userComments._parentBlock);
 		this.commentsHeader.rendering();
 		this.formBlock.rendering();
-		this.userComments.rendering(JSON.parse(localStorage.getItem('allTheComments')));
+		UserComments.rendering(JSON.parse(localStorage.getItem('allTheComments')));
 	}
 
 	public parentBlock(): HTMLDivElement {

@@ -42,8 +42,7 @@ export default class Favorite implements IBlock {
 
 		})
 
-		const comments: UserComments = new UserComments();
-		comments.rendering(commentsStorage);
+		UserComments.rendering(commentsStorage);
 	}
 
 	public parentBlock(): HTMLDivElement {

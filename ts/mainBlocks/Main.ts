@@ -2,17 +2,17 @@ import CommentsBlock from "../commentsBlocks/CommentsBlock.js";
 import { IBlock } from "../others/Config.js";
 
 export default class Main implements IBlock {
-	parentBlock: HTMLElement = document.createElement('main');
-	blockClassName: string = 'wrapper__content content';
-	commentsBlock: CommentsBlock
+	public _parentBlock: HTMLElement = document.createElement('main');
+	private blockClassName: string = 'wrapper__content content';
+	private commentsBlock: CommentsBlock
 
-	constructor() {
+	public constructor() {
 		this.commentsBlock = new CommentsBlock();
 	}
 
-	public rendering(){
-		this.parentBlock.className = this.blockClassName;
-		this.parentBlock.innerHTML = `
+	public rendering(): void {
+		this._parentBlock.className = this.blockClassName;
+		this._parentBlock.innerHTML = `
 				<div class="content__main-section main-section">
 					<ul class="main-section__list"></ul>
 					<div class="main-section__article"></div>
@@ -23,7 +23,11 @@ export default class Main implements IBlock {
 			list.innerHTML += `<li class="main-section__item"></li>`
 		}
 
-		this.parentBlock.append(this.commentsBlock.parentBlock);
+		this._parentBlock.append(this.commentsBlock._parentBlock);
 		this.commentsBlock.rendering();
+	}
+
+	public parentBlock(): HTMLElement {
+		return this._parentBlock;
 	}
 }

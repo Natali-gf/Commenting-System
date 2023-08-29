@@ -7,34 +7,31 @@ import { FavoriteComment } from "../enum/favorite.js";
 import CommentsCounter from "../options/CommentsCounter.js";
 
 export default class FormBlock implements IBlock {
-	parentBlock: HTMLDivElement = document.createElement('div');
-	blockClassName: string = 'form-block comments__form-block';
-	user: User;
-	textarea: HTMLAreaElement;
-	btnCancel: HTMLElement;
-	notifications: Notification;
-	isButtonDisabled: boolean = true;
-	config: Config;
-	userComments: UserComments;
-	isAnswer: Id | null = null;
-	formBlock: HTMLElement;
-	form: HTMLElement
+	public _parentBlock: HTMLDivElement = document.createElement('div');
+	public _textarea: HTMLAreaElement;
+	private blockClassName: string = 'form-block comments__form-block';
+	private isAnswer: Id | null = null;
+	private isButtonDisabled: boolean = true;
+	private user: User;
+	private notifications: Notification;
+	private config: Config;
+	private userComments: UserComments;
 
-	constructor(){
+	public constructor() {
 		this.user = new User();
 		this.notifications = new Notification();
 		this.config = new Config();
 		this.userComments = new UserComments();
 	}
 
-	public rendering(comment?: Comment){
-		this.parentBlock.className = this.blockClassName;
-		this.formBlock = document.querySelector('.form-block');
+	public rendering(comment?: Comment): void {
+		this._parentBlock.className = this.blockClassName;
+		const renderedBlock: HTMLElement = document.querySelector('.form-block');
 
-		this.formBlock.innerHTML = `
+		renderedBlock.innerHTML = `
 					<img class="form-block__user_photo user_photo"
-						src="${this.user.userPhoto}"></img>
-					<div class="form-block__user_name user_name">${this.user.userName}</div>
+						src="${this.user._userPhoto}"></img>
+					<div class="form-block__user_name user_name">${this.user._userName}</div>
 					${comment != undefined ?
 					`<div class="form-block__answer">
 						<div class="form-block__answer_user-name">${comment.userName}</div>
@@ -46,48 +43,51 @@ export default class FormBlock implements IBlock {
 						<button id="buttonSend" class="form__button" type="submit" disabled>Отправить</button>
 					</form>`;
 
-		this.textarea = <HTMLAreaElement>document.getElementById('textarea');
-		this.form = document.getElementById('form');
-		this.formBlock.append(this.notifications.textNotification);
-		this.formBlock.append(this.notifications.errorNotification);
-		this.notifications.rendering();
+		this._textarea = <HTMLAreaElement>document.getElementById('textarea');
+		const form: HTMLFormElement = <HTMLFormElement>document.getElementById('form');
+		let btnCancel: HTMLButtonElement;
 		if(comment != undefined){
+			btnCancel = <HTMLButtonElement>document.getElementById('btnCancel');
 			this.isAnswer = comment.id;
-			this.btnCancel = document.getElementById('btnCancel');
 		}
 
-		this.addEvents();
+		renderedBlock.append(this.notifications._textNotification);
+		renderedBlock.append(this.notifications._errorNotification);
+		this.notifications.rendering();
+
+		this.addEvents(form, btnCancel);
 	}
 
-	private addEvents() {
+	private addEvents(form: HTMLFormElement, btnCancel: HTMLButtonElement): void {
 		if(this.isAnswer != null){
-			this.btnCancel.addEventListener('click', () => {
+			btnCancel.addEventListener('click', () => {
 				this.isAnswer = null;
 				this.rendering();
 			})
 		}
 
-		this.form.addEventListener('submit', (e: Event) => this.sendForm(e));
+		form.addEventListener('submit', (e: Event): void => this.sendForm(e));
 
-		this.textarea.addEventListener('input', (e: Event) => {
-			const target: HTMLInputElement = <HTMLInputElement>e.target
+		this._textarea.addEventListener('input', (e: Event): void => {
+			const btnSend: HTMLButtonElement = <HTMLButtonElement>document.getElementById('buttonSend')
+			const target: HTMLInputElement = <HTMLInputElement>e.target;
 			target.style.height = 'auto';
   			target.style.height = target.scrollHeight + 1 + "px";
 
 			this.notifications.changeDescription(target.value.length);
 
 			if(this.isButtonDisabled && target.value.length <= this.config.maxMessageLength){
-				document.getElementById('buttonSend').removeAttribute('disabled');
+				btnSend.removeAttribute('disabled');
 				this.isButtonDisabled = false;
 			} else if(!this.isButtonDisabled
 						&& (target.value.length === 0 || target.value.length > this.config.maxMessageLength)) {
-				document.getElementById('buttonSend').setAttribute('disabled', 'true');
-				this.isButtonDisabled = true;
+							btnSend.setAttribute('disabled', 'true');
+							this.isButtonDisabled = true;
 			}
 		})
 	}
 
-	private sendForm(e: Event){
+	private sendForm(e: Event): void {
 		e.preventDefault();
 
 		const message: Comment = {
@@ -95,14 +95,14 @@ export default class FormBlock implements IBlock {
 			parentId: this.isAnswer ? this.isAnswer : null,
 			answerIds: [],
 			lastAnswer: new Date(),
-			userPhoto: this.user.userPhoto,
-			userName: this.user.userName,
+			userPhoto: this.user._userPhoto,
+			userName: this.user._userName,
 			dataComment: new Date(),
 			isFavorite: FavoriteComment.Out,
 			noParentForFavorite: false,
 			rating: {
 				currentRating: this.config.defaultRating,
-				votes: []
+				votes: [],
 			},
 			textComment: e.target[0].value,
 		}
@@ -114,5 +114,12 @@ export default class FormBlock implements IBlock {
 		this.rendering();
 		const comentsCounter = new CommentsCounter()
 		comentsCounter.rendering();
+	}
+
+	public parentBlock(): HTMLDivElement {
+		return this._parentBlock;
+	}
+	public textarea(): HTMLAreaElement {
+		return this._textarea;
 	}
 }

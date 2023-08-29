@@ -1,29 +1,23 @@
 import { Id } from "./Config.js";
 
 export default class User {
-	userId: Id;
-	userPhoto: string;
-	userName: string;
+	public _userId: Id;
+	public _userPhoto: string;
+	public _userName: string;
 
-	constructor(){
-		this.userId = '135f42f7-c467-42bd-863f-d00836ce156c';
-		this.userPhoto = 'assets/images/girl_anime.jpg';
-		this.userName = 'Natali Popova';
+	public constructor() {
+		this._userId = '135f42f7-c467-42bd-863f-d00836ce156c';
+		this._userPhoto = 'assets/images/girl_anime.jpg';
+		this._userName = 'Natali Popova';
 	}
 
-	async getRandomUserPhoto(): Promise<string> {
-		let randomPitureUrl: string;
-		fetch(`https://picsum.photos/61/61`)
-			.then((response) => {
-				randomPitureUrl = response.url;
-				console.log(response);
-				// this.userPhoto = response.url;
-			})
-			.catch(error => {
-				console.log('error', error);
-				// this.userPhoto = response.url;
-			})
-			this.userPhoto = randomPitureUrl;
-		return randomPitureUrl;
+	public userId(): Id {
+		return this._userId;
+	}
+	public userPhoto(): string {
+		return this._userPhoto;
+	}
+	public userName(): string {
+		return this._userName;
 	}
 }

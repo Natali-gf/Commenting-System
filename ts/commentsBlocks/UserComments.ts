@@ -7,41 +7,38 @@ import Answer from "../options/Answer.js";
 
 
 export default class UserComments implements IBlock {
-	parentBlock: HTMLDivElement = document.createElement('div');
-	blockClassName: string = 'comments__user-comments';
-	userCommentsBlock: Element;
-	rating: Rating;
-	toFavorite: ToFavorite;
-	answer: Answer;
+	public _parentBlock: HTMLDivElement = document.createElement('div');
+	private blockClassName: string = 'comments__user-comments';
+	private userCommentsBlock: Element;
 
-	constructor(){
-	}
-
-	public rendering(commentsStorage: Comment[]){
-		this.parentBlock.className = this.blockClassName;
+	public rendering(commentsStorage: Comment[]): void {
+		this._parentBlock.className = this.blockClassName;
 		this.userCommentsBlock = document.querySelector('.comments__user-comments');
 		this.userCommentsBlock.innerHTML = '';
 
 		commentsStorage.forEach((userComment: Comment, index: number) => {
+
 			if(userComment.answerIds.length){
 				this.commentRendering(userComment, index);
+
 				commentsStorage.filter((comment: Comment) => (
 					userComment.answerIds.some((id: Id) => comment.id === id)))
 						.map((comment: Comment) => this.commentRendering(comment, Math.random()))
+
 			} else if(userComment.parentId === null || userComment.noParentForFavorite){
 				this.commentRendering(userComment, index);
 			}
 		})
 	}
 
-	private commentRendering(userComment: Comment, index: number) {
+	private commentRendering(userComment: Comment, index: number): void {
 		const commentBlock: HTMLDivElement = document.createElement('div');
 		commentBlock.className = 'comments__comment comment';
 		this.userCommentsBlock.append(commentBlock);
 
-		this.rating = new Rating();
-		this.toFavorite = new ToFavorite();
-		this.answer = new Answer();
+		const rating: Rating = new Rating();
+		const toFavorite: ToFavorite = new ToFavorite();
+		const answer: Answer = new Answer();
 		const datatime: Date = new Date(userComment.dataComment);
 		let answerToUserName: string;
 
@@ -69,12 +66,15 @@ export default class UserComments implements IBlock {
 		const optionBlock = document.getElementById(`option${index}`);
 
 		if(userComment.parentId === null) {
-			optionBlock.append(this.answer.parentBlock);
-			this.answer.rendering(userComment);
-		}
-		optionBlock.append(this.toFavorite.parentBlock);
-		optionBlock.append(this.rating.parentBlock);
-		this.toFavorite.rendering(userComment, +index);
-		this.rating.rendering(userComment, +index);
+			optionBlock.append(answer._parentBlock);
+			answer.rendering(userComment)}
+		optionBlock.append(toFavorite._parentBlock);
+		optionBlock.append(rating._parentBlock);
+		toFavorite.rendering(userComment, +index);
+		rating.rendering(userComment, +index);
+	}
+
+	public parentBlock(): HTMLDivElement {
+		return this._parentBlock;
 	}
 }

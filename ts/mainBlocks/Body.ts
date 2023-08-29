@@ -4,28 +4,28 @@ import Header from "./Header.js";
 import Main from "./Main.js";
 
 export default class Body {
-	body: HTMLBodyElement;
-	aside: Aside;
-	header: Header;
-	main: Main;
+	private body: HTMLBodyElement;
+	private aside: Aside;
+	private header: Header;
+	private main: Main;
 
-	constructor() {
+	public constructor() {
 		this.body = document.querySelector('.wrapper');
 		this.aside = new Aside();
 		this.header = new Header();
 		this.main = new Main();
 	}
 
-	public rendering(){
-		this.body.append(this.header.parentBlock);
-		this.body.append(this.aside.parentBlock);
-		this.body.append(this.main.parentBlock);
+	public rendering(): void {
+		this.body.append(this.header._parentBlock);
+		this.body.append(this.aside._parentBlock);
+		this.body.append(this.main._parentBlock);
 		this.header.rendering();
 		this.aside.rendering();
 		this.main.rendering();
 	}
 
-	public checkLocalStorage(comments: Comment[]) {
+	public checkLocalStorage(comments: Comment[]): Comment[] {
 
 		if(!localStorage.getItem('allTheComments')){
 			let favoriteComments: Comment[] = [];

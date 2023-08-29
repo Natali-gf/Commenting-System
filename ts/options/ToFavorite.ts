@@ -4,25 +4,26 @@ import { Comment, IBlock } from "../others/Config.js";
 import Favorite from "./Favorite.js";
 
 export default class ToFavorite implements IBlock {
-	parentBlock: HTMLButtonElement = document.createElement('button');
-	blockClassName: string = 'option__favorite';
-	textFavoriteIn: string = 'В избранном';
-	textFavoriteOut: string = 'В избранное';
-	classNameFavoriteIn: string = 'option__favorite_in';
-	classNameFavoriteOut: string = 'option__favorite_out';
-	isFavoriteComment: FavoriteComment;
-	favorite: Favorite;
-	favoriteBtn: HTMLElement;
+	public _parentBlock: HTMLButtonElement = document.createElement('button');
+	private blockClassName: string = 'option__favorite';
+	private textFavoriteIn: string = 'В избранном';
+	private textFavoriteOut: string = 'В избранное';
+	private classNameFavoriteIn: string = 'option__favorite_in';
+	private classNameFavoriteOut: string = 'option__favorite_out';
+	private isFavoriteComment: FavoriteComment;
+	private favorite: Favorite;
+	private favoriteBtn: HTMLElement;
 
-	constructor(){
+	public constructor() {
 		this.favorite = new Favorite();
 	}
 
 	public rendering(comment: Comment, key: number): void {
-		this.parentBlock.className = this.blockClassName;
-		this.parentBlock.id = `favoriteBtn${key}`;
+		this._parentBlock.className = this.blockClassName;
+		this._parentBlock.id = `favoriteBtn${key}`;
 		this.isFavoriteComment = comment.isFavorite;
 		this.favoriteBtn = document.getElementById(`favoriteBtn${key}`)
+
 		if(comment.isFavorite === FavoriteComment.In){
 			this.favoriteBtn.textContent = this.textFavoriteIn;
 			this.favoriteBtn.classList.add(this.classNameFavoriteIn)
@@ -34,25 +35,27 @@ export default class ToFavorite implements IBlock {
 		this.addEvents(comment);
 	}
 
-	private addEvents(comment: Comment){
-		this.favoriteBtn.addEventListener('click', () => this.updateFavorite(comment))
+	private addEvents(comment: Comment): void {
+		this.favoriteBtn.addEventListener('click', (): void => {
+			if(this.isFavoriteComment === FavoriteComment.In){
+				this.favoriteBtn.textContent = this.textFavoriteOut;
+				this.favoriteBtn.classList.add(this.classNameFavoriteOut);
+				this.favoriteBtn.classList.remove(this.classNameFavoriteIn);
+				this.isFavoriteComment = FavoriteComment.Out
+				comment.isFavorite = FavoriteComment.Out
+			} else {
+				this.favoriteBtn.textContent = this.textFavoriteIn;
+				this.favoriteBtn.classList.add(this.classNameFavoriteIn);
+				this.favoriteBtn.classList.remove(this.classNameFavoriteOut);
+				this.isFavoriteComment = FavoriteComment.In
+				comment.isFavorite = FavoriteComment.In
+			}
+
+			updateFavoriteStorage(comment);
+		})
 	}
 
-	private updateFavorite(comment: Comment) {
-		if(this.isFavoriteComment === FavoriteComment.In){
-			this.favoriteBtn.textContent = this.textFavoriteOut;
-			this.favoriteBtn.classList.add(this.classNameFavoriteOut);
-			this.favoriteBtn.classList.remove(this.classNameFavoriteIn);
-			this.isFavoriteComment = FavoriteComment.Out
-			comment.isFavorite = FavoriteComment.Out
-		} else {
-			this.favoriteBtn.textContent = this.textFavoriteIn;
-			this.favoriteBtn.classList.add(this.classNameFavoriteIn);
-			this.favoriteBtn.classList.remove(this.classNameFavoriteOut);
-			this.isFavoriteComment = FavoriteComment.In
-			comment.isFavorite = FavoriteComment.In
-		}
-
-		updateFavoriteStorage(comment);
+	public parentBlock(): HTMLButtonElement {
+		return this._parentBlock;
 	}
 }

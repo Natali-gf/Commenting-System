@@ -16,21 +16,20 @@ const SortTypeName: SortName = {
 }
 
 export default class Sort implements IBlock {
-	parentBlock: HTMLDivElement = document.createElement('div');
-	blockClassName: string = 'comments__sort sort';
-	currentOrderBy: OrderBy = OrderBy.Desc;
-	currentSortType: SortType = SortType.Date;
-	userComments: UserComments;
-	renderedBlock: HTMLElement;
+	public _parentBlock: HTMLDivElement = document.createElement('div');
+	private blockClassName: string = 'comments__sort sort';
+	private currentOrderBy: OrderBy = OrderBy.Desc;
+	private currentSortType: SortType = SortType.Date;
+	private userComments: UserComments;
 
-	constructor() {
+	public constructor() {
 		this.userComments = new UserComments()
 	}
 
 	public rendering() {
-		this.parentBlock.className = this.blockClassName;
-		this.renderedBlock = document.querySelector(`.sort`);
-		this.renderedBlock.innerHTML = `
+		this._parentBlock.className = this.blockClassName;
+		const renderedBlock = document.querySelector(`.sort`);
+		renderedBlock.innerHTML = `
 				<h4 class="sort__title">${SortTypeName[this.currentSortType]}</h4>
 				<button class="sort__order sort__order_${this.currentOrderBy}"></button>
 				<ul class="sort__list hidden"></ul>`;
@@ -38,6 +37,7 @@ export default class Sort implements IBlock {
 		const sortTitle: HTMLElement = document.querySelector('.sort__title');
 		const orderBtn: HTMLButtonElement = document.querySelector('.sort__order');
 		const sortList: HTMLUListElement = document.querySelector('.sort__list');
+
 		for (const key in SortTypeName) {
 			sortList.innerHTML += `
 				<li class="sort__item">
@@ -49,15 +49,16 @@ export default class Sort implements IBlock {
 
 		const defaultCheck: HTMLInputElement = <HTMLInputElement>document.getElementById(`sort${this.currentSortType}`)
 		defaultCheck.checked = true;
+
 		this.addEvents(sortList, orderBtn, sortTitle);
 	}
 
-	private addEvents(sortList: HTMLUListElement, orderBtn: HTMLButtonElement, sortTitle: HTMLElement){
-		sortTitle.addEventListener('click', () => {
+	private addEvents(sortList: HTMLUListElement, orderBtn: HTMLButtonElement, sortTitle: HTMLElement): void {
+		sortTitle.addEventListener('click', (): void => {
 			sortList.classList.toggle('hidden');
 		})
 
-		sortList.addEventListener('click', (e: Event) => {
+		sortList.addEventListener('click', (e: Event): void => {
 			sortList.classList.add('hidden');
 
 			const target: HTMLElement = <HTMLElement>e.target;
@@ -68,7 +69,7 @@ export default class Sort implements IBlock {
 			}
 		});
 
-		orderBtn.addEventListener('click', () => {
+		orderBtn.addEventListener('click', (): void => {
 			if(this.currentOrderBy === OrderBy.Desc){
 				orderBtn.classList.add('sort__order_0');
 				orderBtn.classList.remove('sort__order_1');
@@ -83,7 +84,7 @@ export default class Sort implements IBlock {
 		})
 	}
 
-	public sortBy(){
+	public sortBy(): void {
 		let commentsStorage = JSON.parse(localStorage.getItem('allTheComments'));
 
 		switch (this.currentSortType) {
@@ -141,5 +142,9 @@ export default class Sort implements IBlock {
 
 		this.userComments.rendering(commentsStorage);
 		localStorage.setItem('allTheComments', JSON.stringify(commentsStorage));
+	}
+
+	public parentBlock(): HTMLDivElement {
+		return this._parentBlock;
 	}
 }

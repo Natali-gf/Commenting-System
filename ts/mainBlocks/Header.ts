@@ -1,10 +1,14 @@
 import { IBlock } from "../others/Config.js";
 
 export default class Header implements IBlock {
-	parentBlock: HTMLElement = document.createElement('header');
-	blockClassName: string = 'wrapper__header';
+	public _parentBlock: HTMLElement = document.createElement('header');
+	private blockClassName: string = 'wrapper__header';
 
-	public rendering(){
-		this.parentBlock.className = this.blockClassName;
+	public rendering(): void {
+		this._parentBlock.className = this.blockClassName;
+	}
+
+	public parentBlock(): HTMLElement {
+		return this._parentBlock;
 	}
 }

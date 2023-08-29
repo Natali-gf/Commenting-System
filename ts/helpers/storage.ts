@@ -3,7 +3,7 @@ import { RatingType } from "../enum/rating.js";
 import { Comment } from "../others/Config.js";
 import { Id } from "../others/Config.js";
 
-export function updateCommentsStorage(message: Comment) {
+export function updateCommentsStorage(message: Comment): Comment[] {
 	const commentsStorage = JSON.parse(localStorage.getItem('allTheComments'));
 	commentsStorage.unshift(message);
 	if(message.parentId) {
@@ -20,7 +20,7 @@ export function updateCommentsStorage(message: Comment) {
 	return commentsStorage;
 }
 
-export function updateFavoriteStorage(comment: Comment) {
+export function updateFavoriteStorage(comment: Comment): Comment[] {
 	const commentsStorage = JSON.parse(localStorage.getItem('allTheComments'));
 	const favoriteComments = JSON.parse(localStorage.getItem('favoriteComments'));
 
@@ -47,7 +47,7 @@ export function updateFavoriteStorage(comment: Comment) {
 	return commentsStorage;
 }
 
-export function updateRatingComment(messageId: Id, changeTo: number, userId: Id, votedType: RatingType) {
+export function updateRatingComment(messageId: Id, changeTo: number, userId: Id, votedType: RatingType): Comment[] {
 	const commentsStorage: Comment[] = JSON.parse(localStorage.getItem('allTheComments'));
 
 	for (const comment of commentsStorage) {

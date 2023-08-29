@@ -2,7 +2,7 @@ import { FavoriteComment } from "../enum/favorite";
 import { RatingType } from "../enum/rating";
 
 export type Id = `${string}-${string}-${string}-${string}-${string}`;
-export type ParentElement = HTMLElement | HTMLDivElement | HTMLFormElement | HTMLButtonElement;
+export type ParentElement = HTMLElement | HTMLDivElement | HTMLButtonElement;
 export type RatingVotes = {
 	userId: Id,
 	type: RatingType.Like | RatingType.Dislike,
@@ -26,13 +26,9 @@ export type Comment = {
 }
 
 export interface IBlock {
-	parentBlock: ParentElement;
-	blockClassName: string;
-	rendering(comment?: Comment[] | Comment | string | number, index?: number): void;
-}
-
-export interface IEventBlock extends IBlock{
-	events(): void;
+	_parentBlock: ParentElement;
+	// blockClassName: string;
+	rendering(comment?: Comment[] | Comment, index?: number): void;
 }
 
 export default class Config {

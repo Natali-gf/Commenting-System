@@ -4,25 +4,29 @@ import { IBlock } from "../others/Config.js";
 import FormBlock from "./FormBlock.js";
 
 export default class CommentsBlock implements IBlock {
-	parentBlock: HTMLDivElement = document.createElement('div');
-	blockClassName: string = 'comments content__comments';
-	commentsHeader: CommentsHeader;
-	formBlock: FormBlock;
-	userComments: UserComments;
+	public _parentBlock: HTMLDivElement = document.createElement('div');
+	private blockClassName: string = 'comments content__comments';
+	private commentsHeader: CommentsHeader;
+	private formBlock: FormBlock;
+	private userComments: UserComments;
 
-	constructor(){
+	public constructor() {
 		this.commentsHeader = new CommentsHeader();
 		this.formBlock = new FormBlock();
-		this.userComments = new UserComments()
+		this.userComments = new UserComments();
 	}
 
-	public rendering(){
-		this.parentBlock.className = this.blockClassName;
-		this.parentBlock.append(this.commentsHeader.parentBlock);
-		this.parentBlock.append(this.formBlock.parentBlock);
-		this.parentBlock.append(this.userComments.parentBlock);
+	public rendering(): void {
+		this._parentBlock.className = this.blockClassName;
+		this._parentBlock.append(this.commentsHeader._parentBlock);
+		this._parentBlock.append(this.formBlock._parentBlock);
+		this._parentBlock.append(this.userComments._parentBlock);
 		this.commentsHeader.rendering();
 		this.formBlock.rendering();
 		this.userComments.rendering(JSON.parse(localStorage.getItem('allTheComments')));
+	}
+
+	public parentBlock(): HTMLDivElement {
+		return this._parentBlock;
 	}
 }

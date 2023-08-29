@@ -1,35 +1,42 @@
 import Config from "./Config.js";
 
 export default class Notification {
-	errorMessage: string = 'Слишком длинное сообщение';
-	descriptionMessage: string = 'Макс. 1000 символов'
-	textNotification: HTMLDivElement = document.createElement('div');
-	errorNotification: HTMLDivElement = document.createElement('div');
-	isError: boolean = false;
-	config: Config;
+	private errorMessage: string = 'Слишком длинное сообщение';
+	private descriptionMessage: string = 'Макс. 1000 символов'
+	public _textNotification: HTMLDivElement = document.createElement('div');
+	public _errorNotification: HTMLDivElement = document.createElement('div');
+	private isError: boolean = false;
+	private config: Config;
 
-	constructor(){
+	constructor() {
 		this.config = new Config();
 	}
 
-	changeDescription(messageLength: number) {
-		this.textNotification.textContent = `${messageLength}/1000`;
+	public changeDescription(messageLength: number): void  {
+		this._textNotification.textContent = `${messageLength}/1000`;
 
 		if(!this.isError && messageLength > this.config.maxMessageLength) {
-			this.errorNotification.classList.remove('hidden');
-			this.textNotification.classList.add('form-block__notification_error');
+			this._errorNotification.classList.remove('hidden');
+			this._textNotification.classList.add('form-block__notification_error');
 			this.isError = true;
 		} else if(this.isError && messageLength <= this.config.maxMessageLength) {
-			this.errorNotification.classList.add('hidden');
-			this.textNotification.classList.remove('form-block__notification_error');
+			this._errorNotification.classList.add('hidden');
+			this._textNotification.classList.remove('form-block__notification_error');
 			this.isError = false;
 		}
 	}
 
-	public rendering(){
-		this.textNotification.className = 'form-block__notification';
-		this.errorNotification.className = 'form-block__error-message hidden';
-		this.textNotification.textContent = this.descriptionMessage;
-		this.errorNotification.textContent = this.errorMessage;
+	public rendering(): void {
+		this._textNotification.className = 'form-block__notification';
+		this._errorNotification.className = 'form-block__error-message hidden';
+		this._textNotification.textContent = this.descriptionMessage;
+		this._errorNotification.textContent = this.errorMessage;
+	}
+
+	public textNotification(): HTMLDivElement {
+		return this._textNotification;
+	}
+	public errorNotification(): HTMLDivElement {
+		return this._errorNotification;
 	}
 }

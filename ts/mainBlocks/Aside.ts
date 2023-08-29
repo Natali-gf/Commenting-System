@@ -1,10 +1,14 @@
 import { IBlock } from "../others/Config.js";
 
 export default class Aside implements IBlock{
-	parentBlock: HTMLElement = document.createElement('aside');
-	blockClassName: string = 'wrapper__sidebar';
+	public _parentBlock: HTMLElement = document.createElement('aside');
+	private blockClassName: string = 'wrapper__sidebar';
 
-	rendering(){
-		this.parentBlock.className = this.blockClassName;
+	public rendering(): void {
+		this._parentBlock.className = this.blockClassName;
+	}
+
+	public parentBlock(): HTMLElement {
+		return this._parentBlock;
 	}
 }

@@ -5,7 +5,7 @@ import { Comment, IBlock } from "../others/Config.js";
 export default class Favorite implements IBlock {
 	public _parentBlock: HTMLDivElement = document.createElement('div');
 	private blockClassName: string = 'comments__favorite favorite';
-	private useFavorite: FavoriteComment = FavoriteComment.Out;
+	public static useFavorite: FavoriteComment = FavoriteComment.Out;
 
 	public rendering(): void {
 		this._parentBlock.className = this.blockClassName;
@@ -19,14 +19,14 @@ export default class Favorite implements IBlock {
 			let commentsStorage: Comment[];
 			const title: HTMLElement = document.querySelector('.favorite__title');
 
-			if(this.useFavorite === FavoriteComment.Out) {
+			if(Favorite.useFavorite === FavoriteComment.Out) {
 				commentsStorage = JSON.parse(localStorage.getItem('favoriteComments'));
 				title.classList.add('favorite__title_active');
-				this.useFavorite = FavoriteComment.In;
+				Favorite.useFavorite = FavoriteComment.In;
 			} else {
 				commentsStorage = JSON.parse(localStorage.getItem('allTheComments'));
 				title.classList.remove('favorite__title_active');
-				this.useFavorite = FavoriteComment.Out;
+				Favorite.useFavorite = FavoriteComment.Out;
 			}
 
 			this.filterComments(commentsStorage)

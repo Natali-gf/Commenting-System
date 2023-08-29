@@ -4,22 +4,22 @@ import Header from "./Header.js";
 import Main from "./Main.js";
 
 export default class Body {
-	private body: HTMLBodyElement;
+	public static _body: HTMLBodyElement;
 	private aside: Aside;
 	private header: Header;
 	private main: Main;
 
 	public constructor() {
-		this.body = document.querySelector('.wrapper');
+		Body._body = document.querySelector('.wrapper');
 		this.aside = new Aside();
 		this.header = new Header();
 		this.main = new Main();
 	}
 
 	public rendering(): void {
-		this.body.append(this.header._parentBlock);
-		this.body.append(this.aside._parentBlock);
-		this.body.append(this.main._parentBlock);
+		Body._body.append(this.header._parentBlock);
+		Body._body.append(this.aside._parentBlock);
+		Body._body.append(this.main._parentBlock);
 		this.header.rendering();
 		this.aside.rendering();
 		this.main.rendering();
@@ -39,5 +39,9 @@ export default class Body {
 		}
 
 		return JSON.parse(localStorage.getItem('allTheComments'));
+	}
+
+	public body(): HTMLBodyElement {
+		return Body._body;
 	}
 }

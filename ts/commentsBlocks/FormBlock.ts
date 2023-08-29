@@ -8,7 +8,7 @@ import CommentsCounter from "../options/CommentsCounter.js";
 
 export default class FormBlock implements IBlock {
 	public _parentBlock: HTMLDivElement = document.createElement('div');
-	public _textarea: HTMLAreaElement;
+	public static _textarea: HTMLAreaElement;
 	private blockClassName: string = 'form-block comments__form-block';
 	private isAnswer: Id | null = null;
 	private isButtonDisabled: boolean = true;
@@ -43,7 +43,7 @@ export default class FormBlock implements IBlock {
 						<button id="buttonSend" class="form__button" type="submit" disabled>Отправить</button>
 					</form>`;
 
-		this._textarea = <HTMLAreaElement>document.getElementById('textarea');
+		FormBlock._textarea = <HTMLAreaElement>document.getElementById('textarea');
 		const form: HTMLFormElement = <HTMLFormElement>document.getElementById('form');
 		let btnCancel: HTMLButtonElement;
 		if(comment != undefined){
@@ -68,7 +68,7 @@ export default class FormBlock implements IBlock {
 
 		form.addEventListener('submit', (e: Event): void => this.sendForm(e));
 
-		this._textarea.addEventListener('input', (e: Event): void => {
+		FormBlock._textarea.addEventListener('input', (e: Event): void => {
 			const btnSend: HTMLButtonElement = <HTMLButtonElement>document.getElementById('buttonSend')
 			const target: HTMLInputElement = <HTMLInputElement>e.target;
 			target.style.height = 'auto';
@@ -120,6 +120,6 @@ export default class FormBlock implements IBlock {
 		return this._parentBlock;
 	}
 	public textarea(): HTMLAreaElement {
-		return this._textarea;
+		return FormBlock._textarea;
 	}
 }

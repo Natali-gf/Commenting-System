@@ -15,9 +15,9 @@ export default class Answer implements IBlock {
 
 	private addEvents(comment: Comment): void {
 		this._parentBlock.addEventListener('click', (): void => {
-			const form = new FormBlock();
-			form.rendering(comment);
-			form._textarea.focus();
+			// const form = new FormBlock();
+			// form.rendering(comment);
+			FormBlock._textarea.focus();
 		})
 	}
 

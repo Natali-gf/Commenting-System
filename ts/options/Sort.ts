@@ -1,6 +1,7 @@
 import { Comment, IBlock } from "../others/Config.js";
 import { SortType, OrderBy } from "../enum/sort.js"
 import UserComments from "../commentsBlocks/UserComments.js";
+import Favorite from "./Favorite.js";
 
 type SortName = {
 	[SortType.Date]: string
@@ -56,6 +57,7 @@ export default class Sort implements IBlock {
 	private addEvents(sortList: HTMLUListElement, orderBtn: HTMLButtonElement, sortTitle: HTMLElement): void {
 		sortTitle.addEventListener('click', (): void => {
 			sortList.classList.toggle('hidden');
+			console.log(Favorite.useFavorite)
 		})
 
 		sortList.addEventListener('click', (e: Event): void => {
@@ -65,7 +67,11 @@ export default class Sort implements IBlock {
 			if(target.id){
 				this.currentSortType = +target.id.slice(-1);
 				this.rendering();
-				this.sortBy();
+
+				let commentsStorage = Favorite.useFavorite
+									? JSON.parse(localStorage.getItem('favoriteComments'))
+									: JSON.parse(localStorage.getItem('allTheComments'));
+			this.sortBy(commentsStorage);
 			}
 		});
 
@@ -80,12 +86,14 @@ export default class Sort implements IBlock {
 				this.currentOrderBy = OrderBy.Desc;
 			}
 
-			this.sortBy()
+			let commentsStorage = Favorite.useFavorite
+									? JSON.parse(localStorage.getItem('favoriteComments'))
+									: JSON.parse(localStorage.getItem('allTheComments'));
+			this.sortBy(commentsStorage);
 		})
 	}
 
-	public sortBy(): void {
-		let commentsStorage = JSON.parse(localStorage.getItem('allTheComments'));
+	public sortBy(commentsStorage: Comment[]): void {
 
 		switch (this.currentSortType) {
 			case SortType.Date:
@@ -141,7 +149,9 @@ export default class Sort implements IBlock {
 		}
 
 		this.userComments.rendering(commentsStorage);
-		localStorage.setItem('allTheComments', JSON.stringify(commentsStorage));
+		Favorite.useFavorite
+			? localStorage.setItem('favoriteComments', JSON.stringify(commentsStorage))
+			: localStorage.setItem('allTheComments', JSON.stringify(commentsStorage));
 	}
 
 	public parentBlock(): HTMLDivElement {

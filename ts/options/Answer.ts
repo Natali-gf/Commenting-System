@@ -23,7 +23,7 @@ export default class Answer implements IBlock {
 //! только подчёркивает красным и говорит об ошибке
 //! не понимаю почему это свойство не существует, ведь если пройти по пути type 'HTMLAreaElement' -
 //! свойство 'selectstart' там есть
-			FormBlock._textarea.selectionStart = FormBlock.inputValue.length;
+			// FormBlock._textarea.selectionStart = FormBlock.inputValue.length;
 		})
 	}
 

@@ -9,7 +9,7 @@ import Favorite from "../options/Favorite.js";
 
 export default class FormBlock {
 	public _parentBlock: HTMLDivElement = document.createElement('div');
-	public static _textarea: HTMLAreaElement;
+	public static _textarea: HTMLTextAreaElement;
 	public static inputValue: string = '';
 	private blockClassName: string = 'form-block comments__form-block';
 	private static isAnswer: Id | null = null;
@@ -43,7 +43,7 @@ export default class FormBlock {
 						${this.inputValue === '' ? "disabled" : ''}>Отправить</button>
 				</form>`;
 
-		FormBlock._textarea = <HTMLAreaElement>document.getElementById('textarea');
+		FormBlock._textarea = <HTMLTextAreaElement>document.getElementById('textarea');
 		const form: HTMLFormElement = <HTMLFormElement>document.getElementById('form');
 		let btnCancel: HTMLButtonElement;
 		if(comment != undefined){
@@ -71,9 +71,9 @@ export default class FormBlock {
 
 		FormBlock._textarea.addEventListener('input', (e: Event): void => {
 			const btnSend: HTMLButtonElement = <HTMLButtonElement>document.getElementById('buttonSend')
-			const target: HTMLInputElement = <HTMLInputElement>e.target;
+			const target: HTMLTextAreaElement = <HTMLTextAreaElement>e.target;
 			target.style.height = 'auto';
-  			target.style.height = target.scrollHeight + 1 + "px";
+  			target.style.height = target.scrollHeight + "px";
 			this.inputValue = target.value;
 
 			notifications.changeDescription(target.value.length);
@@ -108,7 +108,7 @@ export default class FormBlock {
 			},
 			textComment: this.inputValue,
 		}
-		
+
 		this.inputValue = ''
 		this.isAnswer = null;
 		this.isButtonDisabled = true;
@@ -127,7 +127,7 @@ export default class FormBlock {
 	public get parentBlock(): HTMLDivElement {
 		return this._parentBlock;
 	}
-	public get textarea(): HTMLAreaElement {
+	public get textarea(): HTMLTextAreaElement {
 		return FormBlock._textarea;
 	}
 }

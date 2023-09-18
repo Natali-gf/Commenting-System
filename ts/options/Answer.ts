@@ -17,13 +17,7 @@ export default class Answer implements IBlock {
 		this._parentBlock.addEventListener('click', (): void => {
 			FormBlock.rendering(comment);
 			FormBlock._textarea.focus();
-//! закомментированный кусок кода выдаёт следующую ошибку
-//! Property 'selectstart' does not exist on type 'HTMLAreaElement'.
-//! при этом если код раскомментировать, то он работает и выполняет задуманное действие
-//! только подчёркивает красным и говорит об ошибке
-//! не понимаю почему это свойство не существует, ведь если пройти по пути type 'HTMLAreaElement' -
-//! свойство 'selectstart' там есть
-			// FormBlock._textarea.selectionStart = FormBlock.inputValue.length;
+			FormBlock._textarea.selectionStart = FormBlock.inputValue.length;
 		})
 	}
 

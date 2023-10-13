@@ -1,4 +1,4 @@
-## Проект "Commenting system"
+## "Commenting system"
 
 + create a form for adding comments.
 + The form should have a 1000 character limit and it is preferable to enter text only.

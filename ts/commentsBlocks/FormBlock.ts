@@ -38,9 +38,9 @@ export default class FormBlock {
 				</div>` : ''}
 				<form id="form" class="form-block__form form">
 					<textarea id="textarea" class="form__input" type="text" rows="1" required minlength="1"
-						placeholder="Введите текст сообщения...">${this.inputValue}</textarea>
+						placeholder="Enter your comment...">${this.inputValue}</textarea>
 					<button id="buttonSend" class="form__button" type="submit"
-						${this.inputValue === '' ? "disabled" : ''}>Отправить</button>
+						${this.inputValue === '' ? "disabled" : ''}>Send</button>
 				</form>`;
 
 		FormBlock._textarea = <HTMLTextAreaElement>document.getElementById('textarea');

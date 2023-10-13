@@ -1,8 +1,8 @@
 import Config from "./Config.js";
 
 export default class Notification {
-	private errorMessage: string = 'Слишком длинное сообщение';
-	private descriptionMessage: string = 'Макс. 1000 символов'
+	private errorMessage: string = 'Too long comment';
+	private descriptionMessage: string = 'Max 1000 symbols'
 	public _textNotification: HTMLDivElement = document.createElement('div');
 	public _errorNotification: HTMLDivElement = document.createElement('div');
 	private isError: boolean = false;

@@ -10,15 +10,21 @@ export const startComments: Comment[] = [
 		answerIds: [],
 		lastAnswer: new Date('2023-08-28T10:01:38+03:00'),
 		userPhoto: `${User._userPhoto}`,
-		userName: `Про_код`,
+		userName: `Nata`,
 		dataComment: new Date('2023-08-28T10:01:38+03:00'),
 		isFavorite: FavoriteComment.In,
 		noParentForFavorite: false,
 		rating: {
 			currentRating: 2,
-			votes: []
+			votes: [{
+				userId: 'f02ece3c-7a61-4475-a834-98d65ecf1b42',
+				type: RatingType.Like,
+			},{
+				userId: 'ce4bfff8-08e6-4e3a-9cc0-ac8ae75ee424',
+				type: RatingType.Like,
+			}]
 		},
-		textComment: `Вопрос: В классе "Answer" есть закомментированный кусок кода выдаёт следующую ошибку "Property 'selectstart' does not exist on type 'HTMLAreaElement'". При этом если код раскомментировать, то он работает и выполняет задуманное действие (только подчёркивает красным и говорит об ошибке). Я не понимаю почему текст ошибки говорит, что это свойство не существует, ведь если пройти по пути "type 'HTMLAreaElement'" - свойство 'selectstart' там есть. (в классе "Answer" оставила подобный комментарий, строка 20). Я хотела, чтобы если пользовательнаписал часть комментария, а затем захотел отправить его в качестве ответа, нажав на кнопку "ответить", то чтобы фокус в был не в начале введённого текста, а в конце.`
+		textComment: `Lorem ipsum was conceived as filler text, formatted in a certain way to enable the presentation of graphic elements in documents, without the need for formal copy. Using Lorem Ipsum allows designers to put together layouts and the form of the content before the content has been created, giving the design and production process more freedom.`
 	},
 	{
 		id: 'ce4bfff8-08e6-4e3a-9cc0-ac8ae75ee424',
@@ -26,21 +32,15 @@ export const startComments: Comment[] = [
 		answerIds: [],
 		lastAnswer: new Date('2023-08-21T18:40:24+03:00'),
 		userPhoto: 'assets/images/user_1.png',
-		userName: 'Максим Авдеенко',
+		userName: 'Max',
 		dataComment: new Date('2023-08-21T18:40:24+03:00'),
 		isFavorite: FavoriteComment.Out,
 		noParentForFavorite: false,
 		rating: {
 			currentRating: 0,
-			votes: [{
-				userId: 'f02ece3c-7a61-4475-a834-98d65ecf1b42',
-				type: RatingType.Like,
-			},{
-				userId: 'ce4bfff8-08e6-4e3a-9cc0-ac8ae75ee424',
-				type: RatingType.Like,
-			},]
+			votes: []
 		},
-		textComment: `Называть проект Молочникова, в котором играют прекрасные Янковский и Эйдельштейн, 'сериалом с блогерами' - это реально несправедливо. К тому же, у Молочникова уже играла в спектакле Екатерина Варнава, которая тоже не актриса, и получилось отлично. Так что, вполне возможно, и Ивлеева с хорошим режиссером себя еще покажет Варнава, которая тоже не актриса, и получилось отлично. Так что, вполне возможно, и Ивлеева с хорошим режиссером себя еще покажет.`,
+		textComment: `qui dolorem ipsum, quia dolor sit amet consectetur adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem`,
 	},
 	{
 		id: 'f02ece3c-7a61-4475-a834-98d65ecf1b42',
@@ -48,7 +48,7 @@ export const startComments: Comment[] = [
 		answerIds: ['f75f9eec-169e-49d1-a7bc-8dafd46a193f', '7c6bfb11-51cd-4763-9795-786d18d65395', '7c6bfb11-51cd-4763-9795-786d18d65396'],
 		lastAnswer: new Date('2023-08-19T09:11:04+03:00'),
 		userPhoto: 'assets/images/user_2.png',
-		userName: 'Алексей_1994b',
+		userName: 'Nike_1994b',
 		dataComment: new Date('2023-08-18T13:55:40+03:00'),
 		isFavorite: FavoriteComment.In,
 		noParentForFavorite: false,
@@ -72,7 +72,7 @@ export const startComments: Comment[] = [
 				},
 			]
 		},
-		textComment: `Самое обидное когда сценарий по сути есть - в виде книг, где нет сюжетных дыр, всё логично, стройное повествование и достаточно взять и экранизировать оригинал как это было в первых фильмах с минимальным количеством отсебятины и зритель с восторгом примет любой такой фильм и сериал, однако вместо этого 'Кольца власти' просто позаимствовали имена из оригинала, куски истории, мало связанные между собой и выдали очередной среднячковый сериал на один раз в лучшем случае.`,
+		textComment: `Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but occasionally circumstances occur in which toil and pain can procure him some great pleasure`,
 	},
 	{
 		id: 'f75f9eec-169e-49d1-a7bc-8dafd46a193f',
@@ -80,7 +80,7 @@ export const startComments: Comment[] = [
 		answerIds: [],
 		lastAnswer: new Date('2023-08-18T15:18:47+03:00'),
 		userPhoto: 'assets/images/user_3.png',
-		userName: 'Джунбокс3000',
+		userName: 'JunBox3000',
 		dataComment: new Date('2023-08-18T15:18:47+03:00'),
 		isFavorite: FavoriteComment.Out,
 		noParentForFavorite: false,
@@ -101,7 +101,7 @@ export const startComments: Comment[] = [
 				},
 			]
 		},
-		textComment: `Наверное, самая большая ошибка создателей сериала была в том, что они поставили уж слишком много надежд на поддержку фанатов вселенной. Как оказалось на деле, большинство 'фанатов' с самой настоящей яростью и желчью стали уничтожать сериал, при этом объективности в отзывах самый минимум.`,
+		textComment: `Lorem ipsum dolor sit amet consectetur adipiscing elit aenean pulvinar, et vulputate augue nascetur sodales ligula lacinia congue etiam, facilisis aptent sagittis volutpat torquent mi inceptos velit. Et nisl congue ad felis placerat convallis platea fames augue, eleifend taciti risus netus inceptos etiam lobortis habitasse nulla, lacinia cras rhoncus sed magna ante hendrerit montes.`,
 	},
 	{
 		id: '7c6bfb11-51cd-4763-9795-786d18d65395',
@@ -109,7 +109,7 @@ export const startComments: Comment[] = [
 		answerIds: [],
 		lastAnswer: new Date('2023-08-19T09:11:04+03:00'),
 		userPhoto: 'assets/images/user_4.png',
-		userName: 'Мистер_душнила',
+		userName: 'Mr_Sock',
 		dataComment: new Date('2023-08-19T09:11:04+03:00'),
 		isFavorite: FavoriteComment.Out,
 		noParentForFavorite: false,
@@ -138,10 +138,6 @@ export const startComments: Comment[] = [
 				},
 			]
 		},
-		textComment: `Какую-то дичь несешь, братиш!`,
+		textComment: `Lorem ipsum.`,
 	}
 ]
-
-// export const users: User[] = [
-
-// ]

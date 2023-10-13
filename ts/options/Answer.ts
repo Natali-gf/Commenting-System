@@ -4,7 +4,7 @@ import { Comment, IBlock } from "../others/Config.js";
 export default class Answer implements IBlock {
 	public _parentBlock: HTMLButtonElement = document.createElement('button');
 	private blockClassName: string = 'option__answer';
-	private buttonName:string = 'Ответить';
+	private buttonName:string = 'Answer';
 
 	public rendering(comment: Comment): void {
 		this._parentBlock.className = this.blockClassName;

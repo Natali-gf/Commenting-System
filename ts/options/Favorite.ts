@@ -9,7 +9,7 @@ export default class Favorite implements IBlock {
 
 	public rendering(): void {
 		this._parentBlock.className = this.blockClassName;
-		this._parentBlock.innerHTML = `<h4 class="favorite__title">Избранное</h4>`;
+		this._parentBlock.innerHTML = `<h4 class="favorite__title">Favorite</h4>`;
 
 		this.addEvents()
 	}

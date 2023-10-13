@@ -10,10 +10,10 @@ type SortName = {
 	[SortType.Answers]: string
 }
 const SortTypeName: SortName = {
-	[SortType.Date]: `По дате`,
-	[SortType.Rating]: 'По количеству оценок',
-	[SortType.Relevance]: 'По актуальности',
-	[SortType.Answers]: 'По количеству ответов'
+	[SortType.Date]: 'By date',
+	[SortType.Rating]: 'By rating',
+	[SortType.Relevance]: 'By relevance',
+	[SortType.Answers]: 'By number of answers'
 }
 
 export default class Sort implements IBlock {

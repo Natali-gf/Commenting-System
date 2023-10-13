@@ -1,27 +1,26 @@
-## Проект "Система комментирования"
+## Проект "Commenting system"
 
-+ Создайте форму для добавления комментария.
-+ Форма должна иметь ограничение в 1000 символов и позволять вводить только текст.
-+ При превышении лимита символов система должна запрещать пользователю добавлять комментарий. Добавить логику обработки ошибки при превышении допустимого количества символов.
-+ Добавьте отображение комментариев от других пользователей.
-+ Используйте localStorage в браузере для хранения этих комментариев.
-+ Реализуйте функционал написания комментария в ответ на уже существующий.
-+ Максимальное количество уровней вложенности — два, то есть можно добавить ответ к комментарию, ответ к ответу — уже нельзя.
-+ Уделите должное внимание мобильной вёрстке — все элементы системы должны корректно отображаться на экранах разных разрешений.
-+ Добавьте функционал изменения рейтинга комментария — его можно увеличивать и уменьшать с шагом в единицу.
-+ Рейтинг может быть отрицательным, положительным и нулевым (по умолчанию).
-+ Реализуйте возможность добавления комментария в избранное.
-+ Добавьте сортировку комментариев по разным параметрам: по дате добавления, количеству оценок, количеству ответов.
-+ Обратите внимание, что должна быть возможность изменить порядок сортировки по каждому параметру — по убыванию или по возрастанию.
-+ Добавьте функционал отображения только избранных комментариев.
++ create a form for adding comments.
++ The form should have a 1000 character limit and it is preferable to enter text only.
++ If the character limit is exceeded, the system should prohibit the user from entering. Add error handling logic when the allowed number of characters is exceeded.
++ Add comments from other users.
++ Use localStorage in your browser to store these comments.
++ Implement the functionality of writing comments in response to existing ones.
++ The maximum number of nesting levels is two, that is, you can add an answer to a comment, but you cannot add a reply to an answer.
++ Pay attention to email layout - all elements of the system must be configured correctly on screens of different resolutions.
++ add functional changes to the comment rating - it can be turned on and decreased in increments of one.
++ The rating can be negative, negative and zero (default).
++ Implement the ability to add comments to favorites.
++ Add comments sorted by different parameters: date added, number of ratings, number of answers.
++ Please note that it should be possible to change the sort order for each parameter - descending or oldest.
++ Add functionality to display only selected comments.
 
-+ + ТРЕБОВАНИЯ К КОДУ
++ + CODE REQUIREMENTS
 
-+ Проект выполнен с использованием TypeScript.
-+ На ES6-классах применено ООП.
-+ Соблюдено единообразие оформления кода: корректные отступы между смысловыми блоками, единый формат отступов от левого края (два или четыре пробела — на ваш выбор) и так далее.
-+ Все переменные, классы и функции имеют осмысленные имена.
-+ Проект следует принципам DRY (Don’t Repeat Yourself) и KISS (Keep It Short and Simple).
-+ Все комментарии хранятся в localStorage.
-+ Для генерирования аватаров пользователей применяются сторонние сервисы, например Picsum.
-
++ The project was completed using TypeScript.
++ OOP is used in ES6 classes.
++ The uniformity of code formatting is maintained: correct indentations between semantic blocks, a uniform format for indentations from the left edge (two or four spaces - at your choice), and so on.
++ All variables, classes and functions have meaningful names.
++ The project follows the principles of DRY (Don't repeat yourself) and KISS (Keep it short and simple).
++ All comments are stored in localStorage.
++ To limit avatars, third-party services are used, for example Picsum.

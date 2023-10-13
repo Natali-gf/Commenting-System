@@ -6,8 +6,8 @@ import Favorite from "./Favorite.js";
 export default class ToFavorite implements IBlock {
 	public _parentBlock: HTMLButtonElement = document.createElement('button');
 	private blockClassName: string = 'option__favorite';
-	private textFavoriteIn: string = 'В избранном';
-	private textFavoriteOut: string = 'В избранное';
+	private textFavoriteIn: string = 'In favorites';
+	private textFavoriteOut: string = 'To favorites';
 	private classNameFavoriteIn: string = 'option__favorite_in';
 	private classNameFavoriteOut: string = 'option__favorite_out';
 	private isFavoriteComment: FavoriteComment;
